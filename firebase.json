@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "jajanku",
     "public": "dist/canteen-jdl",
     "ignore": [
       "firebase.json",
