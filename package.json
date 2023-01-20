@@ -25,6 +25,7 @@
     "@angular/pwa": "^14.2.10",
     "@angular/router": "^14.2.0",
     "@angular/service-worker": "^14.2.0",
+    "@ericblade/quagga2": "^1.8.2",
     "firebase": "^9.15.0",
     "quagga": "^0.12.1",
     "rxjs": "~7.5.0",

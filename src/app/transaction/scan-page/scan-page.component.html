@@ -1,16 +1,16 @@
-<mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="side">
-    <p>Auto-resizing sidenav</p>
-    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-    <button (click)="showFiller = !showFiller" mat-raised-button>
-      Toggle extra text
-    </button>
-  </mat-drawer>
+<div class="error-message" *ngIf="errorMessage">
+  {{ errorMessage }}
+</div>
 
-  <div class="example-sidenav-content">
-    <button type="button" mat-button (click)="drawer.toggle()">
-      Toggle sidenav
-    </button>
-  </div>
+<div id="scanner-container">
+  <!-- QuaggaJS will populate this element -->
+</div>
 
-</mat-drawer-container>
+<div class="controls">
+  <form>
+    <input id="acceptAnyCode" type="checkbox" [(ngModel)]="acceptAnyCode" name="acceptAnyCode" required/>
+    <label for="acceptAnyCode">Accept any code</label>
+    &nbsp;
+  </form>
+
+</div>
