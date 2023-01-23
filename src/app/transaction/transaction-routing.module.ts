@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {ScanPageComponent} from '../shared/scan-page/scan-page.component';
 import {CommonModule} from '@angular/common';
+import {SellComponent} from './sell/sell.component';
 
 const routes: Routes = [
-  {path : '', component : ScanPageComponent},
-  {path : 'scan', component : ScanPageComponent},
+  {path : '', component : SellComponent},
 ];
 
 @NgModule({

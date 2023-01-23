@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./item.component.css']
 })
 export class ItemComponent {
-  isScanMode = false;
   quantity = 1;
 
   incrementQuantity() {

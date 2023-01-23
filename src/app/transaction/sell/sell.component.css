@@ -1,0 +1,28 @@
+.sell-container {
+  padding: 12px;
+}
+
+.custom-form-field-keyword {
+  width: 100%;
+}
+
+.clear-keyword {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.clear-keyword:hover {
+  transform: scale(1.3);
+}
+
+.clear-keyword:active {
+  transform: scale(1.4);
+  transition: transform 0.1s ease-in-out;
+}
+
+.slide-toggle-scanner {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}

@@ -106,10 +106,3 @@
   transform: scale(1.2);
   transition: transform 0.1s ease-in-out;
 }
-
-.slide-toggle-scanner {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 24px;
-  margin-bottom: 24px;
-}

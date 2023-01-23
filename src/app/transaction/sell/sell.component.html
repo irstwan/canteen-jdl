@@ -1,0 +1,15 @@
+<div class="sell-container">
+  <div class="slide-toggle-scanner">
+    <mat-slide-toggle [(ngModel)]="isScanMode" color="primary">
+      {{isScanMode ? 'Hilangkan Scanner' : 'Pake Scanner'}}
+    </mat-slide-toggle>
+  </div>
+  <app-scan-page *ngIf="isScanMode"></app-scan-page>
+  <div>
+    <mat-form-field class="custom-form-field-keyword" appearance="outline">
+      <input type="text" matInput placeholder="Cari jajanan">
+      <mat-icon matSuffix class="clear-keyword">clear</mat-icon>
+    </mat-form-field>
+  </div>
+
+</div>

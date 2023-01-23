@@ -9,20 +9,22 @@ import {AppRoutingModule} from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ServiceWorkerModule, SwRegistrationOptions} from '@angular/service-worker';
 import {SharedModule} from './shared/shared.module';
+import {TransactionModule} from './transaction/transaction.module';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
-  imports: [
-    BrowserModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    ServiceWorkerModule.register('ngsw-worker.js'),
-    SharedModule
-  ],
+    imports: [
+        BrowserModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFirestoreModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        ServiceWorkerModule.register('ngsw-worker.js'),
+        SharedModule,
+        TransactionModule
+    ],
   providers: [{
     provide: SwRegistrationOptions,
     useFactory: () => {
