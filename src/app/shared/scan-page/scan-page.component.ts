@@ -147,14 +147,4 @@ export class ScanPageComponent implements AfterViewInit {
     this.changeDetectorRef.detectChanges();
     alert('Barcode: ' + code);
   }
-
-  private createUnknownArticle(code: string): any {
-    return {
-      ean: code,
-      name: `Code ${code}`,
-      image: 'assets/classy_crab_unknown.png',
-      price: 42
-    }
-  }
-
 }

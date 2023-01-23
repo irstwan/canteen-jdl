@@ -7,15 +7,19 @@ import {MatButtonModule} from '@angular/material/button';
 import {FormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {ScanPageComponent} from './scan-page/scan-page.component';
 
 
 
 @NgModule({
   declarations: [
-    ItemComponent
+    ItemComponent,
+    ScanPageComponent
   ],
   exports: [
-    ItemComponent
+    ItemComponent,
+    ScanPageComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +28,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatButtonModule,
     FormsModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    MatSlideToggleModule
   ]
 })
 export class SharedModule { }

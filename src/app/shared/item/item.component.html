@@ -1,3 +1,9 @@
+<div class="slide-toggle-scanner">
+  <mat-slide-toggle [(ngModel)]="isScanMode" color="primary">
+    {{isScanMode ? 'Hilangkan Scanner' : 'Tampilkan Scanner'}}
+  </mat-slide-toggle>
+</div>
+<app-scan-page *ngIf="isScanMode"></app-scan-page>
 <div *ngFor="let a of [1, 2,3]">
   <mat-card class="custom-card">
     <mat-card-content>

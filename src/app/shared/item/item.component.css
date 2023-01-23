@@ -7,7 +7,7 @@
 }
 
 .card-image {
-  width: 100%;
+  width: auto;
   height: 100%;
 }
 
@@ -105,4 +105,11 @@
 .decrement-icon:active, .increment-icon:active {
   transform: scale(1.2);
   transition: transform 0.1s ease-in-out;
+}
+
+.slide-toggle-scanner {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+  margin-bottom: 24px;
 }
