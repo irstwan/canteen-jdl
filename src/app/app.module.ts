@@ -8,6 +8,7 @@ import {AngularFirestoreModule} from '@angular/fire/compat/firestore';
 import {AppRoutingModule} from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ServiceWorkerModule, SwRegistrationOptions} from '@angular/service-worker';
+import {SharedModule} from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {ServiceWorkerModule, SwRegistrationOptions} from '@angular/service-worke
     AngularFirestoreModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ServiceWorkerModule.register('ngsw-worker.js')
+    ServiceWorkerModule.register('ngsw-worker.js'),
+    SharedModule
   ],
   providers: [{
     provide: SwRegistrationOptions,
