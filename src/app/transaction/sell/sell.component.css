@@ -26,3 +26,11 @@
   margin-top: 24px;
   margin-bottom: 24px;
 }
+
+.cupertino-pane {
+  margin: 20px;
+}
+
+.item-container {
+  margin-bottom: 15vh;
+}

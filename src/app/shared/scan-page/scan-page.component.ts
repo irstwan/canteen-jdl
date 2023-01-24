@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {BeepService} from '../../beep.service';
 import {UpdateService} from '../../update.service';
 import {environment} from '../../../environments/environment';
@@ -10,22 +10,10 @@ import {getMainBarcodeScanningCamera} from '../../camera-access';
   templateUrl: './scan-page.component.html',
   styleUrls: ['./scan-page.component.css']
 })
-export class ScanPageComponent implements AfterViewInit {
+export class ScanPageComponent implements AfterViewInit, OnDestroy {
 
   started: boolean | undefined;
   errorMessage: string | undefined;
-  acceptAnyCode = true;
-  items: [any, number][] = [];
-  totalPrice: number = 0;
-
-  private catalogue: any[] = [
-    { name: 'Classy Crab (red)', ean: '7601234567890', image: 'assets/classy_crab_red.png', price: 10 },
-    { name: 'Classy Crab (blue)', ean: '7601234561232', image: 'assets/classy_crab_blue.png', price: 10 },
-    { name: 'Classy Crab (gold, ltd. ed.)', ean: '7601234564561', image: 'assets/classy_crab_gold.png', price: 50 }
-  ];
-
-  private lastScannedCode: string | undefined;
-  private lastScannedCodeDate: number  | undefined;
 
   constructor(private changeDetectorRef: ChangeDetectorRef,
               private beepService: BeepService,
@@ -146,5 +134,9 @@ export class ScanPageComponent implements AfterViewInit {
     this.beepService.beep();
     this.changeDetectorRef.detectChanges();
     alert('Barcode: ' + code);
+  }
+
+  ngOnDestroy(): void {
+    Quagga.stop().then(r => {});
   }
 }

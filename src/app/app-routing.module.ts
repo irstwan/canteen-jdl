@@ -6,11 +6,13 @@ import {AppComponent} from './app.component';
 const routes: Routes = [
   {
     path : '',
-    component : AppComponent
-  },
-  {
-    path: 'transaction',
-    loadChildren: () => import('./transaction/transaction.module').then(m => m.TransactionModule)
+    component : AppComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./transaction/transaction.module').then(m => m.TransactionModule)
+      }
+    ]
   }
 ];
 
