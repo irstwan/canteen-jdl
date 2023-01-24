@@ -1,0 +1,12 @@
+.card-image {
+  width: auto;
+  height: 100%;
+}
+
+/*Start*/
+.image {
+  grid-area: image;
+  width: 80px;
+  height: 80px;
+  margin: auto auto auto 0;
+}

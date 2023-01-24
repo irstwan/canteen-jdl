@@ -1,0 +1,54 @@
+<div class="ui container">
+  <h1 style="padding-top: 2rem; text-align: center;">Master Data Stok Jajanan</h1>
+  <div class="ui form">
+    <div class="field">
+      <label>Nama Barang</label>
+      <input type="text" [(ngModel)]="name" name="nama" autocomplete="off">
+    </div>
+    <div class="field">
+      <label>Stok</label>
+      <input type="number" [(ngModel)]="stock" name="stok" autocomplete="off">
+    </div>
+    <div class="field">
+      <label>Harga</label>
+      <input type="number" [(ngModel)]="price" name="harga" autocomplete="off">
+    </div>
+    <div class="field">
+      <label>Url Gambar Barang</label>
+      <input type="text" [(ngModel)]="urlImage" name="url-image" autocomplete="off">
+    </div>
+    <div class="ui inverted primary button" *ngIf="!isEdit" (click)="save()">Simpan</div>
+    <div class="ui inverted primary button" *ngIf="isEdit" (click)="edit()">Perbarui</div>
+    <div class="ui inverted secondary button" (click)="reset()">Reset</div>
+  </div>
+  <table class="ui celled table">
+    <thead>
+    <tr class="ui center aligned">
+      <th>Foto Barang</th>
+      <th>Nama Barang</th>
+      <th>Stok</th>
+      <th>Harga</th>
+      <th>Aksi</th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let product of this.products" class="ui center aligned">
+    <tr>
+      <td data-label="Foto Barang">
+        <div class="image">
+          <img src="{{product.urlImage}}" class="card-image">
+        </div>
+      </td>
+      <td data-label="Nama Barang">{{product.name}}</td>
+      <td data-label="Stok">{{product.stock}}</td>
+      <td data-label="Harga">Rp. {{product.price}}</td>
+      <td data-label="Aksi">
+        <div class="ui buttons">
+          <button class="ui positive button" (click)="getEditData(product)">Edit</button>
+          <div class="or" data-text="/"></div>
+          <button class="ui button" (click)="delete(product)">Hapus</button>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
