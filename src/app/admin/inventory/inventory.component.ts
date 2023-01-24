@@ -15,6 +15,7 @@ export class InventoryComponent {
   stock = 0;
   price = 0;
   urlImage = ''
+  barcode = '';
 
   isEdit = false;
 
@@ -37,7 +38,8 @@ export class InventoryComponent {
       name: this.name,
       stock: this.stock,
       price: this.price,
-      urlImage: this.urlImage
+      urlImage: this.urlImage,
+      barcode: this.barcode
     }
     this.firestore.collection(CollectionAddress.PRODUCT)
       .add(product)
@@ -58,6 +60,7 @@ export class InventoryComponent {
     this.stock = product.stock;
     this.price = product.price;
     this.urlImage = product.urlImage;
+    this.barcode = product.barcode
   }
 
   edit() {
@@ -66,7 +69,8 @@ export class InventoryComponent {
       name: this.name,
       stock: this.stock,
       price: this.price,
-      urlImage: this.urlImage
+      urlImage: this.urlImage,
+      barcode: this.barcode
     }
     this.firestore.collection(CollectionAddress.PRODUCT)
       .doc(this.productId)
@@ -102,5 +106,6 @@ export class InventoryComponent {
     this.price = 0;
     this.urlImage = '';
     this.stock = 0;
+    this.barcode = ''
   }
 }

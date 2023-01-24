@@ -2,6 +2,10 @@
   <h1 style="padding-top: 2rem; text-align: center;">Master Data Stok Jajanan</h1>
   <div class="ui form">
     <div class="field">
+      <label>Barcode</label>
+      <input type="text" [(ngModel)]="barcode" name="barcode" autocomplete="off">
+    </div>
+    <div class="field">
       <label>Nama Barang</label>
       <input type="text" [(ngModel)]="name" name="nama" autocomplete="off">
     </div>
@@ -24,20 +28,24 @@
   <table class="ui celled table">
     <thead>
     <tr class="ui center aligned">
+      <th>No</th>
       <th>Foto Barang</th>
+      <th>Barcode</th>
       <th>Nama Barang</th>
       <th>Stok</th>
       <th>Harga</th>
       <th>Aksi</th>
     </tr>
     </thead>
-    <tbody *ngFor="let product of this.products" class="ui center aligned">
+    <tbody *ngFor="let product of this.products; let index = index" class="ui center aligned">
     <tr>
+      <td data-label="No">{{index + 1}}</td>
       <td data-label="Foto Barang">
         <div class="image">
           <img src="{{product.urlImage}}" class="card-image">
         </div>
       </td>
+      <td data-label="Barcode">{{product.barcode}}</td>
       <td data-label="Nama Barang">{{product.name}}</td>
       <td data-label="Stok">{{product.stock}}</td>
       <td data-label="Harga">Rp. {{product.price}}</td>
