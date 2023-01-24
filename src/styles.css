@@ -21,3 +21,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   height: 40px !important;
   padding: 0;
 }
+
+.cupertino-pane-wrapper .destroy-button {
+  display: none !important;
+}
