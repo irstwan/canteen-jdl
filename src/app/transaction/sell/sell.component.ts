@@ -42,6 +42,7 @@ export class SellComponent implements OnInit {
 
   setKeyword(keyword: string) {
     this.keyword.setValue(keyword);
+    this.isScanMode = !this.isScanMode;
   }
   clearSearch(): void {
     this.keyword.setValue('');

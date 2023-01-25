@@ -9,6 +9,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {ScanPageComponent} from './scan-page/scan-page.component';
+import {BarcodeScannerLivestreamModule, BarcodeScannerLivestreamOverlayModule} from 'ngx-barcode-scanner';
 
 
 
@@ -21,15 +22,17 @@ import {ScanPageComponent} from './scan-page/scan-page.component';
     ItemComponent,
     ScanPageComponent
   ],
-  imports: [
-    CommonModule,
-    MatToolbarModule,
-    MatCardModule,
-    MatButtonModule,
-    FormsModule,
-    MatInputModule,
-    MatIconModule,
-    MatSlideToggleModule
-  ]
+    imports: [
+        CommonModule,
+        MatToolbarModule,
+        MatCardModule,
+        MatButtonModule,
+        FormsModule,
+        MatInputModule,
+        MatIconModule,
+        MatSlideToggleModule,
+        BarcodeScannerLivestreamModule,
+        BarcodeScannerLivestreamOverlayModule
+    ]
 })
 export class SharedModule { }
