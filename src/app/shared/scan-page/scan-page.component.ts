@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {BeepService} from '../../beep.service';
 import {UpdateService} from '../../update.service';
 import {environment} from '../../../environments/environment';
@@ -14,6 +14,7 @@ export class ScanPageComponent implements AfterViewInit, OnDestroy {
 
   started: boolean | undefined;
   errorMessage: string | undefined;
+  @Output() barcode = new EventEmitter<string>();
 
   constructor(private changeDetectorRef: ChangeDetectorRef,
               private beepService: BeepService,
@@ -111,29 +112,9 @@ export class ScanPageComponent implements AfterViewInit, OnDestroy {
   }
 
   onBarcodeScanned(code: string) {
-
-    // // ignore duplicates for an interval of 1.5 seconds
-    // const now = new Date().getTime();
-    // if (code === this.lastScannedCode
-    //   && ((this.lastScannedCodeDate !== undefined) && (now < this.lastScannedCodeDate + 1500))) {
-    //   return;
-    // }
-    //
-    // // only accept articles from catalogue
-    // let article = this.catalogue.find(a => a.ean === code);
-    // if (!article) {
-    //   if (this.acceptAnyCode) {
-    //     article = this.createUnknownArticle(code);
-    //   } else {
-    //     return;
-    //   }
-    // }
-    //
-    // this.lastScannedCode = code;
-    // this.lastScannedCodeDate = now;
     this.beepService.beep();
+    this.barcode.emit(code);
     this.changeDetectorRef.detectChanges();
-    alert('Barcode: ' + code);
   }
 
   ngOnDestroy(): void {

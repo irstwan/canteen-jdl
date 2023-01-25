@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CupertinoPane} from 'cupertino-pane';
+import {FormControl} from '@angular/forms';
 @Component({
   selector: 'app-sell',
   templateUrl: './sell.component.html',
@@ -8,14 +9,16 @@ import {CupertinoPane} from 'cupertino-pane';
 export class SellComponent implements OnInit {
   isScanMode = false;
   cupertinoPane: any;
-  constructor() { }
+  keyword: FormControl;
+  @Output() keywordEmitter = new EventEmitter<string>();
+  constructor() {
+    this.keyword = new FormControl();
+  }
 
   ngOnInit(): void {
     this.cupertinoPane = new CupertinoPane('.cupertino-pane', {
       draggableOver: true
     });
-
-    this.cupertinoPane.enableDrag();
 
     this.cupertinoPane.present({
       animate: true,
@@ -30,6 +33,17 @@ export class SellComponent implements OnInit {
         }
       }
     });
+
+    this.keyword.valueChanges
+      .subscribe((value) => {
+        this.keywordEmitter.emit(value);
+      });
   }
 
+  setKeyword(keyword: string) {
+    this.keyword.setValue(keyword);
+  }
+  clearSearch(): void {
+    this.keyword.setValue('');
+  }
 }

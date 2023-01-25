@@ -4,15 +4,17 @@
       {{isScanMode ? 'Hilangkan Scanner' : 'Pake Scanner'}}
     </mat-slide-toggle>
   </div>
-  <app-scan-page *ngIf="isScanMode"></app-scan-page>
+  <app-scan-page *ngIf="isScanMode" (barcode)="setKeyword($event)"></app-scan-page>
   <div>
     <mat-form-field class="custom-form-field-keyword" appearance="outline">
-      <input type="text" matInput placeholder="Cari jajanan">
-      <mat-icon matSuffix class="clear-keyword">clear</mat-icon>
+      <input type="text" matInput placeholder="Cari jajanan" [formControl]="keyword">
+      <mat-icon matSuffix class="clear-keyword" *ngIf="keyword.value?.length" (click)="clearSearch()">
+        clear
+      </mat-icon>
     </mat-form-field>
   </div>
   <div class="item-container">
-    <app-item></app-item>
+    <app-item [searchByKeyword]="keyword.value"></app-item>
   </div>
   <div class="cupertino-pane">
     <h1>Total: 140.000</h1>
