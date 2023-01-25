@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/compat/firestore';
 import {CollectionAddress} from '../../model/CollectionAddress';
-import {Product} from '../../model/Product';
+import {Item} from '../../model/Item';
 
 @Component({
   selector: 'app-item',
@@ -10,21 +10,21 @@ import {Product} from '../../model/Product';
 })
 export class ItemComponent {
   quantity = 1;
-  products: Product[] = [];
-  productsFiltered: Product[] = [];
+  items: Item[] = [];
+  itemsFiltered: Item[] = [];
   @Input() set searchByKeyword(keyword: string) {
-    this.productsFiltered = this.products.filter(product => {
+    this.itemsFiltered = this.items.filter(product => {
       let productData = product?.barcode + ' ' +
         product?.name + ' ' + product?.price + ' ' +
         product?.stock;
       productData = productData.toLowerCase();
       return productData.includes(keyword?.toLowerCase());
     });
-    console.log('filter: ', this.productsFiltered)
+    console.log('filter: ', this.itemsFiltered)
   }
 
   constructor( private firestore: AngularFirestore ) {
-    this.getProducts();
+    this.getItems();
   }
 
   incrementQuantity() {
@@ -43,12 +43,12 @@ export class ItemComponent {
     // code for updating quantity
   }
 
-  private getProducts() {
-    this.firestore.collection(CollectionAddress.PRODUCT)
+  private getItems() {
+    this.firestore.collection(CollectionAddress.ITEM)
       .get().subscribe((querySnapshot) => {
       querySnapshot.forEach((doc) => {
-        this.products.push(<Product>doc.data());
-        this.productsFiltered = this.products;
+        this.items.push(<Item>doc.data());
+        this.itemsFiltered = this.items;
       });
     })
   }

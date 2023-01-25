@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AngularFirestore} from '@angular/fire/compat/firestore';
-import {Product} from '../../model/Product';
+import {Item} from '../../model/Item';
 import {CollectionAddress} from '../../model/CollectionAddress';
 
 @Component({
@@ -9,7 +9,7 @@ import {CollectionAddress} from '../../model/CollectionAddress';
   styleUrls: ['./inventory.component.css']
 })
 export class InventoryComponent {
-  products: Product[] = [];
+  products: Item[] = [];
   productId = ''
   name = ''
   stock = 0;
@@ -24,16 +24,16 @@ export class InventoryComponent {
   }
 
   getLatestData(): void {
-    let data = this.firestore.collection(CollectionAddress.PRODUCT);
+    let data = this.firestore.collection(CollectionAddress.ITEM);
     let latestData = data.valueChanges({ idField: 'productId' });
     latestData.subscribe((res) => {
-      this.products = res as Product[];
+      this.products = res as Item[];
     });
     this.isEdit = false
   }
 
   save(): void {
-    let product: Product = {
+    let product: Item = {
       productId: this.productId,
       name: this.name,
       stock: this.stock,
@@ -41,7 +41,7 @@ export class InventoryComponent {
       urlImage: this.urlImage,
       barcode: this.barcode
     }
-    this.firestore.collection(CollectionAddress.PRODUCT)
+    this.firestore.collection(CollectionAddress.ITEM)
       .add(product)
       .then(res => {
         console.log(res);
@@ -53,7 +53,7 @@ export class InventoryComponent {
       })
   }
 
-  getEditData(product: Product): void {
+  getEditData(product: Item): void {
     this.isEdit = true;
     this.productId = product.productId;
     this.name = product.name;
@@ -64,7 +64,7 @@ export class InventoryComponent {
   }
 
   edit() {
-    let product: Product = {
+    let product: Item = {
       productId: this.productId,
       name: this.name,
       stock: this.stock,
@@ -72,7 +72,7 @@ export class InventoryComponent {
       urlImage: this.urlImage,
       barcode: this.barcode
     }
-    this.firestore.collection(CollectionAddress.PRODUCT)
+    this.firestore.collection(CollectionAddress.ITEM)
       .doc(this.productId)
       .update(product)
       .then(res => {
@@ -85,8 +85,8 @@ export class InventoryComponent {
       })
   }
 
-  delete(product: Product): void {
-    this.firestore.collection(CollectionAddress.PRODUCT)
+  delete(product: Item): void {
+    this.firestore.collection(CollectionAddress.ITEM)
       .doc(product.productId)
       .delete()
       .then(res => {

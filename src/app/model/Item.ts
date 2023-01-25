@@ -1,4 +1,4 @@
-export interface Product {
+export interface Item {
   productId: string;
   barcode: string;
   name: string;
