@@ -9,13 +9,13 @@ import {CollectionAddress} from '../../model/CollectionAddress';
   styleUrls: ['./inventory.component.css']
 })
 export class InventoryComponent {
-  products: Item[] = [];
-  productId = ''
-  name = ''
-  stock = 0;
-  price = 0;
-  urlImage = ''
-  barcode = '';
+  items: Item[] = [];
+  productId: string = ''
+  name: string = ''
+  stock: number = 0;
+  price: number = 0;
+  urlImage: string = ''
+  barcode: string = '';
 
   isEdit = false;
 
@@ -25,16 +25,16 @@ export class InventoryComponent {
 
   getLatestData(): void {
     let data = this.firestore.collection(CollectionAddress.ITEM);
-    let latestData = data.valueChanges({ idField: 'productId' });
+    let latestData = data.valueChanges({ idField: 'itemId' });
     latestData.subscribe((res) => {
-      this.products = res as Item[];
+      this.items = res as Item[];
     });
     this.isEdit = false
   }
 
   save(): void {
     let product: Item = {
-      productId: this.productId,
+      itemId: this.productId,
       name: this.name,
       stock: this.stock,
       price: this.price,
@@ -55,7 +55,7 @@ export class InventoryComponent {
 
   getEditData(product: Item): void {
     this.isEdit = true;
-    this.productId = product.productId;
+    this.productId = product.itemId;
     this.name = product.name;
     this.stock = product.stock;
     this.price = product.price;
@@ -65,7 +65,7 @@ export class InventoryComponent {
 
   edit() {
     let product: Item = {
-      productId: this.productId,
+      itemId: this.productId,
       name: this.name,
       stock: this.stock,
       price: this.price,
@@ -87,7 +87,7 @@ export class InventoryComponent {
 
   delete(product: Item): void {
     this.firestore.collection(CollectionAddress.ITEM)
-      .doc(product.productId)
+      .doc(product.itemId)
       .delete()
       .then(res => {
         console.log(res);
