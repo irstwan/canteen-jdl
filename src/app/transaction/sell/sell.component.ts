@@ -2,6 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {CupertinoPane} from 'cupertino-pane';
 import {FormControl} from '@angular/forms';
 import {CartItem} from '../../model/CartItem';
+import {MandatoryUtilsService} from '../../utils/mandatory-utils.service';
 @Component({
   selector: 'app-sell',
   templateUrl: './sell.component.html',
@@ -13,7 +14,7 @@ export class SellComponent implements OnInit {
   keyword: FormControl;
   cartItems: CartItem[] = [];
   @Output() keywordEmitter = new EventEmitter<string>();
-  constructor() {
+  constructor(private mandatoryUtilsService: MandatoryUtilsService) {
     this.keyword = new FormControl();
   }
 
@@ -56,5 +57,14 @@ export class SellComponent implements OnInit {
     else {
       this.cupertinoPane.hide();
     }
+  }
+
+  getTotalTransaction(): string {
+    let total = 0;
+    this.cartItems.forEach((item) => {
+      const subtotal = item.price * item.quantity;
+      total = total + subtotal;
+    })
+    return this.mandatoryUtilsService.getRupiahFormatter(total);
   }
 }
