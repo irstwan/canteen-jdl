@@ -14,7 +14,9 @@
     </mat-form-field>
   </div>
   <div class="item-container">
-    <app-item [searchByKeyword]="keyword.value"></app-item>
+    <app-item [searchByKeyword]="keyword.value"
+      (cartItemsEmitter)="setCartItems($event)">
+    </app-item>
   </div>
   <div class="cupertino-pane">
     <h1>Total: 140.000</h1>

@@ -1,6 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {CupertinoPane} from 'cupertino-pane';
 import {FormControl} from '@angular/forms';
+import {CartItem} from '../../model/CartItem';
 @Component({
   selector: 'app-sell',
   templateUrl: './sell.component.html',
@@ -10,6 +11,7 @@ export class SellComponent implements OnInit {
   isScanMode = false;
   cupertinoPane: any;
   keyword: FormControl;
+  cartItems: CartItem[] = [];
   @Output() keywordEmitter = new EventEmitter<string>();
   constructor() {
     this.keyword = new FormControl();
@@ -18,20 +20,6 @@ export class SellComponent implements OnInit {
   ngOnInit(): void {
     this.cupertinoPane = new CupertinoPane('.cupertino-pane', {
       draggableOver: true
-    });
-
-    this.cupertinoPane.present({
-      animate: true,
-      transition: {
-        duration: 600,
-        from: {
-          opacity: 0.7,
-          transform: `translateY(280px) perspective(250px) rotateX(65deg) scale(0.3)`
-        },
-        to: {
-          opacity: 1
-        }
-      }
     });
 
     this.keyword.valueChanges
@@ -46,5 +34,27 @@ export class SellComponent implements OnInit {
   }
   clearSearch(): void {
     this.keyword.setValue('');
+  }
+
+  setCartItems(cartItems: CartItem[]): void {
+    this.cartItems = cartItems;
+    if (cartItems.length) {
+      this.cupertinoPane.present({
+        animate: true,
+        transition: {
+          duration: 600,
+          from: {
+            opacity: 0.7,
+            transform: `translateY(280px) perspective(250px) rotateX(65deg) scale(0.3)`
+          },
+          to: {
+            opacity: 1
+          }
+        }
+      });
+    }
+    else {
+      this.cupertinoPane.hide();
+    }
   }
 }

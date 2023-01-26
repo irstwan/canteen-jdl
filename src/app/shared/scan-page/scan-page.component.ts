@@ -4,8 +4,7 @@ import {
   Component, EventEmitter, Output,
   ViewChild
 } from '@angular/core';
-import Quagga, {QuaggaJSResultObject} from '@ericblade/quagga2';
-import {BarcodeScannerLivestreamComponent, BarcodeScannerLivestreamOverlayComponent} from 'ngx-barcode-scanner';
+import {BarcodeScannerLivestreamOverlayComponent} from 'ngx-barcode-scanner';
 import {BeepService} from '../../beep.service';
 
 @Component({

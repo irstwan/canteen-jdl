@@ -18,7 +18,7 @@
         <div class="add-item">
           <mat-form-field class="custom-form-field" appearance="outline">
             <mat-icon matPrefix class="decrement-icon" (click)="decrementQuantity(product)">remove</mat-icon>
-            <input matInput type="text" pattern="\d*" maxlength="2" [(ngModel)]="product.quantity" value="{{product.quantity}}">
+            <input matInput type="text" pattern="\d*" maxlength="2" [(ngModel)]="product.quantity" value="{{product.quantity}}" (input)="setInput()">
             <mat-icon matSuffix class="increment-icon" (click)="incrementQuantity(product)">add</mat-icon>
           </mat-form-field>
         </div>
