@@ -14,6 +14,12 @@ export class SellComponent implements OnInit {
   keyword: FormControl;
   cartItems: CartItem[] = [];
   @Output() keywordEmitter = new EventEmitter<string>();
+  details: any[] = [
+    {cols: 3, rows: 1},
+    {cols: 1, rows: 2},
+    {cols: 1, rows: 1},
+    {cols: 2, rows: 1},
+  ];
   constructor(private mandatoryUtilsService: MandatoryUtilsService) {
     this.keyword = new FormControl();
   }
@@ -66,5 +72,9 @@ export class SellComponent implements OnInit {
       total = total + subtotal;
     })
     return this.mandatoryUtilsService.getRupiahFormatter(total);
+  }
+
+  getNominalFormatter(nominal: number): string {
+    return this.mandatoryUtilsService.getRupiahFormatter(nominal);
   }
 }

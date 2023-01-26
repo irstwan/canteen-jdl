@@ -8,6 +8,9 @@ import {SharedModule} from '../shared/shared.module';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatButtonModule} from '@angular/material/button';
 
 
 @NgModule({
@@ -17,16 +20,19 @@ import {MatIconModule} from '@angular/material/icon';
   exports: [
     SellComponent
   ],
-    imports: [
-        CommonModule,
-        TransactionRoutingModule,
-        FormsModule,
-        SharedModule,
-        MatSlideToggleModule,
-        MatInputModule,
-        MatIconModule,
-        ReactiveFormsModule
-    ]
+  imports: [
+    CommonModule,
+    TransactionRoutingModule,
+    FormsModule,
+    SharedModule,
+    MatSlideToggleModule,
+    MatInputModule,
+    MatIconModule,
+    ReactiveFormsModule,
+    MatGridListModule,
+    MatDividerModule,
+    MatButtonModule
+  ]
 })
 export class TransactionModule {
 }
