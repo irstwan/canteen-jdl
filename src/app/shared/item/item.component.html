@@ -10,13 +10,14 @@
           <p class="stock-available">{{product.stock}}</p>
           <p class="stock-price">{{product.price}}</p>
         </div>
-        <div class="remove-action">
-          <button mat-icon-button color="warn" aria-label="remove" class="icon-remove">
+        <div class="remove-action" *ngIf="product.quantity > 0">
+          <button mat-icon-button aria-label="remove" class="icon-remove">
             <mat-icon>remove_shopping_cart</mat-icon>
           </button>
         </div>
         <div class="add-item">
-          <mat-form-field class="custom-form-field" appearance="outline">
+          <button mat-raised-button class="button-want" *ngIf="!product.quantity" (click)="incrementQuantity(product)">Mau</button>
+          <mat-form-field class="custom-form-field" appearance="outline" *ngIf="product.quantity > 0">
             <mat-icon matPrefix class="decrement-icon" (click)="decrementQuantity(product)">remove</mat-icon>
             <input matInput type="text" pattern="\d*" maxlength="2" [(ngModel)]="product.quantity" value="{{product.quantity}}" (input)="setInput()">
             <mat-icon matSuffix class="increment-icon" (click)="incrementQuantity(product)">add</mat-icon>

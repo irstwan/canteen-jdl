@@ -25,3 +25,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .cupertino-pane-wrapper .destroy-button {
   display: none !important;
 }
+
+.button-want .mat-button-wrapper {
+  width: 100% !important;
+}
