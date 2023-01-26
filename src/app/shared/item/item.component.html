@@ -11,7 +11,7 @@
           <p class="stock-price">{{product.price}}</p>
         </div>
         <div class="remove-action" *ngIf="product.quantity > 0">
-          <button mat-icon-button aria-label="remove" class="icon-remove">
+          <button mat-icon-button aria-label="remove" class="icon-remove" (click)="removeItemFromCart(product)">
             <mat-icon>remove_shopping_cart</mat-icon>
           </button>
         </div>

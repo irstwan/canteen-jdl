@@ -61,4 +61,9 @@ export class ItemComponent {
     const cartItems = this.itemsFiltered.filter(item => item.quantity > 0);
     this.cartItemsEmitter.emit(cartItems);
   }
+
+  removeItemFromCart(item: CartItem): void {
+    item.quantity = 0;
+    this.setEmit();
+  }
 }
