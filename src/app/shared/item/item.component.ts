@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/compat/firestore';
 import {CollectionAddress} from '../../model/CollectionAddress';
 import {CartItem} from '../../model/CartItem';
+import {MandatoryUtilsService} from '../../utils/mandatory-utils.service';
 
 @Component({
   selector: 'app-item',
@@ -23,7 +24,8 @@ export class ItemComponent {
 
   @Output() cartItemsEmitter = new EventEmitter<CartItem[]>();
 
-  constructor( private firestore: AngularFirestore ) {
+  constructor( private firestore: AngularFirestore,
+               private mandatoryUtils: MandatoryUtilsService) {
     this.getItems();
   }
 
@@ -65,5 +67,9 @@ export class ItemComponent {
   removeItemFromCart(item: CartItem): void {
     item.quantity = 0;
     this.setEmit();
+  }
+
+  getRupiahFormatter(nominal: number): string {
+    return this.mandatoryUtils.getRupiahFormatter(nominal);
   }
 }
