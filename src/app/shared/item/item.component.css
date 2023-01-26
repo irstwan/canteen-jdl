@@ -71,16 +71,15 @@
 }
 
 .custom-form-field input {
-  text-align: center; /* untuk mengatur text rata tengah */
+  text-align: center;
   font-size: large;
   font-weight: bolder;
 }
 
 .decrement-icon  {
   font-size: 24px;
-  color: #ffffff;
+  color: #002e61;
   cursor: pointer;
-  background-color: rgba(238, 54, 77, 0.84);
   border-radius: 50%;
   padding: 3px;
   margin-top: 3px;
@@ -89,9 +88,8 @@
 
 .increment-icon {
   font-size: 24px;
-  color: #ffffff;
+  color: #002e61;
   cursor: pointer;
-  background-color: rgba(0, 112, 173, 0.84);
   border-radius: 50%;
   padding: 3px;
   margin-top: 3px;
