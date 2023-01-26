@@ -7,7 +7,7 @@
         </div>
         <div class="description">
           <p class="title">{{product.name}}</p>
-          <p class="stock-available">{{product.stock}}</p>
+          <p class="stock-available">Stock Tersedia: {{product.stock}}</p>
           <p class="stock-price">{{getRupiahFormatter(product.price)}}</p>
         </div>
         <div class="remove-action" *ngIf="product.quantity > 0">
