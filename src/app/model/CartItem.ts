@@ -1,9 +1,5 @@
 import {Item} from './Item';
 
-export interface CartItem {
+export interface CartItem extends Item {
   quantity: number;
-  itemId: string;
-  barcode: string;
-  name: string;
-  price: number;
 }
