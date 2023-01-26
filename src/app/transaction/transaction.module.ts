@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
 import {TransactionRoutingModule} from './transaction-routing.module';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SellComponent} from './sell/sell.component';
 import {SharedModule} from '../shared/shared.module';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
@@ -17,15 +17,16 @@ import {MatIconModule} from '@angular/material/icon';
   exports: [
     SellComponent
   ],
-  imports: [
-    CommonModule,
-    TransactionRoutingModule,
-    FormsModule,
-    SharedModule,
-    MatSlideToggleModule,
-    MatInputModule,
-    MatIconModule
-  ]
+    imports: [
+        CommonModule,
+        TransactionRoutingModule,
+        FormsModule,
+        SharedModule,
+        MatSlideToggleModule,
+        MatInputModule,
+        MatIconModule,
+        ReactiveFormsModule
+    ]
 })
 export class TransactionModule {
 }

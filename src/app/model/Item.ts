@@ -1,5 +1,5 @@
-export interface Product {
-  productId: string;
+export interface Item {
+  itemId: string;
   barcode: string;
   name: string;
   stock: number;

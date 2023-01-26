@@ -1,3 +1,3 @@
 export enum CollectionAddress {
-  PRODUCT = 'PRODUCT'
+  ITEM = 'item'
 }

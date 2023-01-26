@@ -1,3 +1,7 @@
-<div id="scanner-container">
-  <!-- QuaggaJS will populate this element -->
+<div class="barcode-scanner-container">
+  <barcode-scanner-livestream-overlay
+    [type]="BARCODE_TYPES"
+    (valueChanges)="onValueChanges($event)"
+    (started)="onStarted($event)"
+  ></barcode-scanner-livestream-overlay>
 </div>

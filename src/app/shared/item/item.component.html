@@ -1,14 +1,14 @@
-<div *ngFor="let a of [1, 2,3,4,5,6,7,8,9,10]">
+<div *ngFor="let product of itemsFiltered">
   <mat-card class="custom-card">
     <mat-card-content>
       <div class="grid-container">
         <div class="image">
-          <img src="https://fksfs.co.id/wps/wp-content/uploads/2019/03/Kon-Snack-Mie_Kremezz-hot_chili.png" class="card-image">
+          <img src="{{product.urlImage}}" class="card-image">
         </div>
         <div class="description">
-          <p class="title">Mie Kremes</p>
-          <p class="stock-available">Tersedia: 10</p>
-          <p class="stock-price">Rp. 750</p>
+          <p class="title">{{product.name}}</p>
+          <p class="stock-available">{{product.stock}}</p>
+          <p class="stock-price">{{product.price}}</p>
         </div>
         <div class="remove-action">
           <button mat-icon-button color="warn" aria-label="remove" class="icon-remove">
@@ -17,9 +17,9 @@
         </div>
         <div class="add-item">
           <mat-form-field class="custom-form-field" appearance="outline">
-            <mat-icon matPrefix class="decrement-icon" (click)="decrementQuantity()">remove</mat-icon>
-            <input matInput type="text" pattern="\d*" maxlength="2" [(ngModel)]="quantity" (change)="updateQuantity()">
-            <mat-icon matSuffix class="increment-icon" (click)="incrementQuantity()">add</mat-icon>
+            <mat-icon matPrefix class="decrement-icon" (click)="decrementQuantity(product)">remove</mat-icon>
+            <input matInput type="text" pattern="\d*" maxlength="2" >
+            <mat-icon matSuffix class="increment-icon" (click)="incrementQuantity(product)">add</mat-icon>
           </mat-form-field>
         </div>
       </div>
