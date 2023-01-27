@@ -3,6 +3,10 @@ import {CupertinoPane} from 'cupertino-pane';
 import {FormControl} from '@angular/forms';
 import {CartItem} from '../../model/CartItem';
 import {MandatoryUtilsService} from '../../utils/mandatory-utils.service';
+import {AngularFirestore} from '@angular/fire/compat/firestore';
+import {CollectionAddress} from '../../model/CollectionAddress';
+import {SellTransaction} from '../../model/SellTransaction';
+
 @Component({
   selector: 'app-sell',
   templateUrl: './sell.component.html',
@@ -20,7 +24,9 @@ export class SellComponent implements OnInit {
     {cols: 1, rows: 1},
     {cols: 2, rows: 1},
   ];
-  constructor(private mandatoryUtilsService: MandatoryUtilsService) {
+  constructor(
+    private mandatoryUtilsService: MandatoryUtilsService,
+    private firestore: AngularFirestore,) {
     this.keyword = new FormControl();
   }
 
@@ -76,5 +82,22 @@ export class SellComponent implements OnInit {
 
   getNominalFormatter(nominal: number): string {
     return this.mandatoryUtilsService.getRupiahFormatter(nominal);
+  }
+
+  pay(): void {
+    const sellTransactionReq: SellTransaction = {
+      transactionId: '',
+      items: this.cartItems
+    }
+    this.firestore.collection(CollectionAddress.SELL_TRANSACTION)
+      .add(sellTransactionReq)
+      .then(res => {
+        console.log(res);
+        // this.getLatestData();
+        // this.reset();
+      })
+      .catch(e => {
+        console.log(e);
+      })
   }
 }
