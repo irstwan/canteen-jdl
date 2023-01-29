@@ -6,6 +6,7 @@ import {MandatoryUtilsService} from '../../utils/mandatory-utils.service';
 import {AngularFirestore} from '@angular/fire/compat/firestore';
 import {CollectionAddress} from '../../model/CollectionAddress';
 import {SellTransaction} from '../../model/SellTransaction';
+import {serverTimestamp, increment} from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-sell',
@@ -85,19 +86,30 @@ export class SellComponent implements OnInit {
   }
 
   pay(): void {
+    let subtotal = 0;
+    this.cartItems.forEach((item) => {
+      subtotal = subtotal + (item.quantity * item.price);
+    });
     const sellTransactionReq: SellTransaction = {
+      subtotal: subtotal,
+      total: subtotal,
       transactionId: '',
+      datetime: serverTimestamp(),
       items: this.cartItems
     }
     this.firestore.collection(CollectionAddress.SELL_TRANSACTION)
       .add(sellTransactionReq)
       .then(res => {
-        console.log(res);
-        // this.getLatestData();
-        // this.reset();
+        res.update({
+          transactionId: res.id
+        });
+        this.cartItems.forEach((item) => {
+          this.firestore.collection(CollectionAddress.ITEM).doc(item.itemId)
+            .update({stock: increment(-item.quantity)})
+        })
       })
       .catch(e => {
-        console.log(e);
+        // console.log(e);
       })
   }
 }

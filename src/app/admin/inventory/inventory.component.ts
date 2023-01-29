@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {AngularFirestore} from '@angular/fire/compat/firestore';
 import {Item} from '../../model/Item';
 import {CollectionAddress} from '../../model/CollectionAddress';
@@ -44,7 +44,9 @@ export class InventoryComponent {
     this.firestore.collection(CollectionAddress.ITEM)
       .add(product)
       .then(res => {
-        console.log(res);
+        res.update({
+          itemId: res.id
+        })
         this.getLatestData();
         this.reset();
       })
