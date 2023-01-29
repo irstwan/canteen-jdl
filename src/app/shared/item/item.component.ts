@@ -24,6 +24,15 @@ export class ItemComponent {
     });
   }
 
+  @Input() set reset(isReset: boolean) {
+    if (isReset) {
+      this.items = this.itemsFiltered.map(item => {
+        item.quantity = 0;
+        return item;
+      })
+    }
+  }
+
   @Output() cartItemsEmitter = new EventEmitter<CartItem[]>();
   constructor( private firestore: AngularFirestore,
                private mandatoryUtils: MandatoryUtilsService) {
@@ -51,9 +60,9 @@ export class ItemComponent {
       (snapshot) => {
         snapshot.forEach((doc: any) => {
           let itemResp = <CartItem>doc.data();
-          const itemsWithQuantity = this.items.filter((item) => item.quantity > 0);
-          const index = itemsWithQuantity.findIndex(item => item.itemId === itemResp.itemId);
-          if (index > -1) {
+          const isItemExist = this.items.some((item) => item.itemId === itemResp.itemId);
+          if (isItemExist) {
+            const index = this.items.findIndex(item => item.itemId === itemResp.itemId);
             this.items[index].stock = itemResp.stock;
             this.items[index].price = itemResp.price;
           } else {

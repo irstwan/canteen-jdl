@@ -15,7 +15,8 @@
   </div>
   <div class="item-container">
     <app-item [searchByKeyword]="keyword.value"
-      (cartItemsEmitter)="setCartItems($event)">
+              [reset]="isResetCart"
+              (cartItemsEmitter)="setCartItems($event)">
     </app-item>
   </div>
   <div class="cupertino-pane">

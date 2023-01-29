@@ -19,12 +19,7 @@ export class SellComponent implements OnInit {
   keyword: FormControl;
   cartItems: CartItem[] = [];
   @Output() keywordEmitter = new EventEmitter<string>();
-  details: any[] = [
-    {cols: 3, rows: 1},
-    {cols: 1, rows: 2},
-    {cols: 1, rows: 1},
-    {cols: 2, rows: 1},
-  ];
+  isResetCart = false;
   constructor(
     private mandatoryUtilsService: MandatoryUtilsService,
     private firestore: AngularFirestore,) {
@@ -51,6 +46,7 @@ export class SellComponent implements OnInit {
   }
 
   setCartItems(cartItems: CartItem[]): void {
+    this.isResetCart = false;
     this.cartItems = cartItems;
     if (cartItems.length) {
       this.cupertinoPane.present({
@@ -106,7 +102,10 @@ export class SellComponent implements OnInit {
         this.cartItems.forEach((item) => {
           this.firestore.collection(CollectionAddress.ITEM).doc(item.itemId)
             .update({stock: increment(-item.quantity)})
-        })
+        });
+        this.cartItems = [];
+        this.isResetCart = true;
+        this.cupertinoPane.hide();
       })
       .catch(e => {
         // console.log(e);
