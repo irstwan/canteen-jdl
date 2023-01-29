@@ -26,9 +26,9 @@
           <div>
             <p class="name">{{item.name}}</p>
             <div class="detail-item-container">
-              <div class="price">{{getNominalFormatter(item.price)}}</div>
+              <div class="price">{{getNominalFormatter(item.sell_price)}}</div>
               <div class="quantity">x {{item.quantity}}</div>
-              <div class="subtotal">{{getNominalFormatter(item.price * item.quantity)}}</div>
+              <div class="subtotal">{{getNominalFormatter(item.sell_price * item.quantity)}}</div>
             </div>
           </div>
         <mat-divider class="divider"></mat-divider>

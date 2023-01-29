@@ -6,6 +6,7 @@ export interface SellTransaction {
   subtotal: number;
   total: number;
   datetime: FieldValue;
+  capitalPrice: number;
   // transactionDate: any;
   items: CartItem[];
 }

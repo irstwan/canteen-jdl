@@ -3,6 +3,7 @@ export interface Item {
   barcode: string;
   name: string;
   stock: number;
-  price: number;
+  buy_price: number;
+  sell_price: number;
   urlImage: string;
 }

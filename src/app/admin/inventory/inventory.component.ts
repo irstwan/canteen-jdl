@@ -13,7 +13,8 @@ export class InventoryComponent {
   productId: string = ''
   name: string = ''
   stock: number = 0;
-  price: number = 0;
+  sell_price: number = 0;
+  buy_price: number = 0;
   urlImage: string = ''
   barcode: string = '';
 
@@ -37,9 +38,10 @@ export class InventoryComponent {
       itemId: this.productId,
       name: this.name,
       stock: this.stock,
-      price: this.price,
+      buy_price: this.buy_price,
       urlImage: this.urlImage,
-      barcode: this.barcode
+      barcode: this.barcode,
+      sell_price: this.sell_price,
     }
     this.firestore.collection(CollectionAddress.ITEM)
       .add(product)
@@ -60,7 +62,8 @@ export class InventoryComponent {
     this.productId = product.itemId;
     this.name = product.name;
     this.stock = product.stock;
-    this.price = product.price;
+    this.sell_price = product.sell_price;
+    this.buy_price = product.buy_price;
     this.urlImage = product.urlImage;
     this.barcode = product.barcode
     window.scrollTo(0,0);
@@ -71,7 +74,8 @@ export class InventoryComponent {
       itemId: this.productId,
       name: this.name,
       stock: this.stock,
-      price: this.price,
+      buy_price: this.buy_price,
+      sell_price: this.sell_price,
       urlImage: this.urlImage,
       barcode: this.barcode
     }
@@ -79,7 +83,6 @@ export class InventoryComponent {
       .doc(this.productId)
       .update(product)
       .then(res => {
-        console.log(res);
         this.getLatestData();
         this.reset();
       })
@@ -106,9 +109,11 @@ export class InventoryComponent {
     this.isEdit = false;
     this.productId = '';
     this.name = '';
-    this.price = 0;
+    this.sell_price = 0;
     this.urlImage = '';
     this.stock = 0;
-    this.barcode = ''
+    this.barcode = '';
+    this.buy_price = 0;
+    this.sell_price = 0;
   }
 }

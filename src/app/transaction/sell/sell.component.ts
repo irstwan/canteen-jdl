@@ -71,7 +71,7 @@ export class SellComponent implements OnInit {
   getTotalTransaction(): string {
     let total = 0;
     this.cartItems.forEach((item) => {
-      const subtotal = item.price * item.quantity;
+      const subtotal = item.buy_price * item.quantity;
       total = total + subtotal;
     })
     return this.mandatoryUtilsService.getRupiahFormatter(total);
@@ -83,13 +83,16 @@ export class SellComponent implements OnInit {
 
   pay(): void {
     let subtotal = 0;
+    let capitalPrice = 0;
     this.cartItems.forEach((item) => {
-      subtotal = subtotal + (item.quantity * item.price);
+      subtotal = subtotal + (item.quantity * item.sell_price);
+      capitalPrice = capitalPrice + (item.quantity * item.buy_price);
     });
     const sellTransactionReq: SellTransaction = {
       subtotal: subtotal,
       total: subtotal,
       transactionId: '',
+      capitalPrice: capitalPrice,
       datetime: serverTimestamp(),
       items: this.cartItems
     }

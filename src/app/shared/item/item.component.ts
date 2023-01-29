@@ -17,7 +17,7 @@ export class ItemComponent {
   @Input() set searchByKeyword(keyword: string) {
     this.itemsFiltered = this.items.filter(product => {
       let productData = product?.barcode + ' ' +
-        product?.name + ' ' + product?.price + ' ' +
+        product?.name + ' ' + product?.buy_price + ' ' +
         product?.stock;
       productData = productData.toLowerCase();
       return productData.includes(keyword?.toLowerCase());
@@ -68,7 +68,7 @@ export class ItemComponent {
           if (change.type === "modified") {
             const index = this.items.findIndex(item => item.itemId === itemChange.itemId);
             this.items[index].stock = itemChange.stock;
-            this.items[index].price = itemChange.price;
+            this.items[index].buy_price = itemChange.buy_price;
           }
           if (change.type === "removed") {
             const index = this.items.findIndex(item => item.itemId === itemChange.itemId);

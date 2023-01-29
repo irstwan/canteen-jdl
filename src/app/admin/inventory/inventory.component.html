@@ -14,8 +14,12 @@
       <input type="number" [(ngModel)]="stock" name="stok" autocomplete="off">
     </div>
     <div class="field">
-      <label>Harga</label>
-      <input type="number" [(ngModel)]="price" name="harga" autocomplete="off">
+      <label>Harga Beli</label>
+      <input type="number" [(ngModel)]="buy_price" name="harga" autocomplete="off">
+    </div>
+    <div class="field">
+      <label>Harga Jual</label>
+      <input type="number" [(ngModel)]="sell_price" name="harga" autocomplete="off">
     </div>
     <div class="field">
       <label>Url Gambar Barang</label>
@@ -33,7 +37,8 @@
       <th>Barcode</th>
       <th>Nama Barang</th>
       <th>Stok</th>
-      <th>Harga</th>
+      <th>Harga Beli</th>
+      <th>Harga Jual</th>
       <th>Aksi</th>
     </tr>
     </thead>
@@ -48,7 +53,8 @@
       <td data-label="Barcode">{{product.barcode}}</td>
       <td data-label="Nama Barang">{{product.name}}</td>
       <td data-label="Stok">{{product.stock}}</td>
-      <td data-label="Harga">Rp. {{product.price}}</td>
+      <td data-label="Harga Beli">Rp. {{product.buy_price}}</td>
+      <td data-label="Harga Jual">Rp. {{product.sell_price}}</td>
       <td data-label="Aksi">
         <div class="ui buttons">
           <button class="ui positive button" (click)="getEditData(product)">Edit</button>
