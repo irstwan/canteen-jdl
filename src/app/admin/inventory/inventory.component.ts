@@ -61,6 +61,7 @@ export class InventoryComponent {
     this.price = product.price;
     this.urlImage = product.urlImage;
     this.barcode = product.barcode
+    window.scrollTo(0,0);
   }
 
   edit() {
