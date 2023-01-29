@@ -3,7 +3,7 @@ import {AngularFirestore} from '@angular/fire/compat/firestore';
 import {CollectionAddress} from '../../model/CollectionAddress';
 import {CartItem} from '../../model/CartItem';
 import {MandatoryUtilsService} from '../../utils/mandatory-utils.service';
-import {collection, getFirestore, onSnapshot} from '@angular/fire/firestore';
+import {collection, getFirestore, onSnapshot, query, where} from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-item',
@@ -56,19 +56,27 @@ export class ItemComponent {
 
   private getItems() {
     onSnapshot(
-      collection(this.db, CollectionAddress.ITEM),
+      query(collection(this.db, CollectionAddress.ITEM), where('stock', '>', 0)),
       (snapshot) => {
-        snapshot.forEach((doc: any) => {
-          let itemResp = <CartItem>doc.data();
-          const isItemExist = this.items.some((item) => item.itemId === itemResp.itemId);
-          if (isItemExist) {
-            const index = this.items.findIndex(item => item.itemId === itemResp.itemId);
-            this.items[index].stock = itemResp.stock;
-            this.items[index].price = itemResp.price;
-          } else {
-            itemResp.quantity = 0;
-            this.items.push(itemResp);
+        snapshot.docChanges().forEach((change) => {
+          const itemChange = <CartItem>change.doc.data();
+          if (change.type === "added") {
+            itemChange.quantity = 0;
+            this.items.push(itemChange);
             this.itemsFiltered = this.items;
+          }
+          if (change.type === "modified") {
+            const index = this.items.findIndex(item => item.itemId === itemChange.itemId);
+            this.items[index].stock = itemChange.stock;
+            this.items[index].price = itemChange.price;
+          }
+          if (change.type === "removed") {
+            const index = this.items.findIndex(item => item.itemId === itemChange.itemId);
+            this.items.splice(index, 1);
+            const indexFilter = this.itemsFiltered.findIndex(item => item.itemId === itemChange.itemId);
+            if (indexFilter > -1) {
+              this.itemsFiltered.splice(indexFilter, 1);
+            }
           }
         });
       },
