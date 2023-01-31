@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, DatePipe} from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { InventoryComponent } from './inventory/inventory.component';
@@ -7,7 +7,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {IncomeStatementComponent} from './income-statement/income-statement.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatNativeDateModule} from '@angular/material/core';
+import {MAT_DATE_LOCALE, MatNativeDateModule} from '@angular/material/core';
+import {MatButtonModule} from '@angular/material/button';
 
 
 @NgModule({
@@ -22,7 +23,12 @@ import {MatNativeDateModule} from '@angular/material/core';
     FormsModule,
     MatFormFieldModule,
     MatDatepickerModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatButtonModule
+  ],
+  providers: [
+    DatePipe,
+    {provide: MAT_DATE_LOCALE, useValue: 'id'},
   ]
 })
 export class AdminModule { }
