@@ -6,6 +6,7 @@ import {MandatoryUtilsService} from '../../utils/mandatory-utils.service';
 import {DatePipe} from '@angular/common';
 import {CollectionAddress} from '../../model/CollectionAddress';
 import {SellTransaction} from '../../model/SellTransaction';
+import {CartItem} from '../../model/CartItem';
 
 @Component({
   selector: 'app-sales-report-peritem',
@@ -13,8 +14,8 @@ import {SellTransaction} from '../../model/SellTransaction';
   styleUrls: ['./sales-report-peritem.component.css']
 })
 export class SalesReportPeritemComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'transactionId', 'datetime', 'items.barcode', 'items', 'items.quantity', 'total'];
-  dataSource: SellTransaction[] = [];
+  displayedColumns: string[] = ['position', 'itemId', 'barcode', 'name', 'quantity'];
+  dataSource: CartItem[] = [];
   readonly db = getFirestore();
   range = new FormGroup({
     start: new FormControl<Date | null>(null),
@@ -23,8 +24,7 @@ export class SalesReportPeritemComponent implements OnInit {
 
   constructor(private firestore: AngularFirestore,
               private mandatoryUtils: MandatoryUtilsService,
-              private datePipe: DatePipe,
-              private cdr: ChangeDetectorRef) { }
+              private datePipe: DatePipe) { }
 
   ngOnInit(): void {
   }
@@ -38,10 +38,16 @@ export class SalesReportPeritemComponent implements OnInit {
 
     querySnapshot.forEach((doc) => {
       const transactionData = <SellTransaction>doc.data();
-      this.dataSource.push(transactionData);
+      const items = transactionData.items;
+      items.forEach((item) => {
+        const index = this.dataSource.findIndex(itemTemp => itemTemp.itemId === item.itemId);
+        if (index === -1) {
+          this.dataSource.push(item);
+        } else {
+          this.dataSource[index].quantity = this.dataSource[index].quantity + item.quantity;
+        }
+      });
     });
-    console.log(this.dataSource)
-    this.cdr.detectChanges();
   }
 
   showReport(): void {

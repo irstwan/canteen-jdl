@@ -1,7 +1,8 @@
 <div class="container">
+  <h1>Laporan Penjualan PerItem</h1>
   <div class="form-input">
     <mat-form-field appearance="outline">
-      <mat-label>Enter a date range</mat-label>
+      <mat-label>Masukkan rentang tanggal</mat-label>
       <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
         <input matStartDate formControlName="start" placeholder="Start date">
         <input matEndDate formControlName="end" placeholder="End date">
@@ -24,46 +25,24 @@
         <td mat-cell *matCellDef="let element; let i = index;"> {{i + 1}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="transactionId">
-        <th mat-header-cell *matHeaderCellDef> ID Transaksi </th>
-        <td mat-cell *matCellDef="let element"> {{element.transactionId}} </td>
+      <ng-container matColumnDef="itemId">
+        <th mat-header-cell *matHeaderCellDef> Id Barang </th>
+        <td mat-cell *matCellDef="let element"> {{element.itemId}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="datetime">
-        <th mat-header-cell *matHeaderCellDef> Waktu Transaksi </th>
-        <td mat-cell *matCellDef="let element"> {{element.datetime.toDate() | date: 'dd-MM-yyyy HH:mm:ss'}} WIB</td>
-      </ng-container>
-
-      <ng-container matColumnDef="items.barcode">
+      <ng-container matColumnDef="barcode">
         <th mat-header-cell *matHeaderCellDef> Barcode </th>
-        <td mat-cell *matCellDef="let element">
-          <div *ngFor="let item of element.items">
-            {{item.barcode}}
-          </div>
-        </td>
+        <td mat-cell *matCellDef="let element"> {{element.barcode}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="items">
-        <th mat-header-cell *matHeaderCellDef> Item </th>
-        <td mat-cell *matCellDef="let element">
-          <div *ngFor="let item of element.items">
-            {{item.name}}
-          </div>
-        </td>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Nama Barang </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="items.quantity">
-        <th mat-header-cell *matHeaderCellDef> Jumlah </th>
-        <td mat-cell *matCellDef="let element">
-          <div *ngFor="let item of element.items">
-            {{item.quantity}}
-          </div>
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="total">
-        <th mat-header-cell *matHeaderCellDef> Total </th>
-        <td mat-cell *matCellDef="let element"> {{getNominalFormatter(element.total)}} </td>
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef> Jumlah Terjual </th>
+        <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

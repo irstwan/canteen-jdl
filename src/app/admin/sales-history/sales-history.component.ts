@@ -23,8 +23,7 @@ export class SalesHistoryComponent implements OnInit {
 
   constructor(private firestore: AngularFirestore,
     private mandatoryUtils: MandatoryUtilsService,
-    private datePipe: DatePipe,
-    private cdr: ChangeDetectorRef) { }
+    private datePipe: DatePipe) { }
 
   ngOnInit(): void {
   }
@@ -40,8 +39,6 @@ export class SalesHistoryComponent implements OnInit {
       const transactionData = <SellTransaction>doc.data();
       this.dataSource.push(transactionData);
     });
-    console.log(this.dataSource)
-    this.cdr.detectChanges();
   }
 
   showReport(): void {
