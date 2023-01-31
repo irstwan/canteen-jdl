@@ -40,18 +40,20 @@ export class ItemComponent {
     this.getItems();
   }
 
-  incrementQuantity(item: CartItem) {
+  incrementQuantity(item: CartItem, event: any) {
     if (item.quantity < 99 ) {
       item.quantity++;
       this.setEmit();
     }
+    event.stopPropagation();
   }
 
-  decrementQuantity(item: CartItem) {
+  decrementQuantity(item: CartItem, event: any) {
     if (item.quantity > 0 ) {
       item.quantity--;
       this.setEmit();
     }
+    event.stopPropagation();
   }
 
   private getItems() {

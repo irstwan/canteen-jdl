@@ -16,11 +16,11 @@
           </button>
         </div>
         <div class="add-item">
-          <button mat-raised-button class="button-want" *ngIf="!product.quantity" (click)="incrementQuantity(product)">Mau</button>
+          <button mat-raised-button class="button-want" *ngIf="!product.quantity" (click)="incrementQuantity(product, $event)">Mau</button>
           <mat-form-field class="custom-form-field" appearance="outline" *ngIf="product.quantity > 0">
-            <mat-icon matPrefix class="decrement-icon" (click)="decrementQuantity(product)">remove</mat-icon>
+            <mat-icon matPrefix class="decrement-icon" (click)="decrementQuantity(product, $event)">remove</mat-icon>
             <input matInput type="text" pattern="\d*" maxlength="2" [(ngModel)]="product.quantity" value="{{product.quantity}}" (input)="setInput()">
-            <mat-icon matSuffix class="increment-icon" (click)="incrementQuantity(product)">add</mat-icon>
+            <mat-icon matSuffix class="increment-icon" (click)="incrementQuantity(product, $event)">add</mat-icon>
           </mat-form-field>
         </div>
       </div>
