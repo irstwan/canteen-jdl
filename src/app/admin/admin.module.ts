@@ -12,6 +12,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { SalesReportPeritemComponent } from './sales-report-peritem/sales-report-peritem.component';
 import { SalesHistoryComponent } from './sales-history/sales-history.component';
 import {MatTableModule} from '@angular/material/table';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {MatTableModule} from '@angular/material/table';
     InventoryComponent,
     IncomeStatementComponent,
     SalesReportPeritemComponent,
-    SalesHistoryComponent
+    SalesHistoryComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,
