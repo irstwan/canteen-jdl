@@ -11,6 +11,7 @@ import {MAT_DATE_LOCALE, MatNativeDateModule} from '@angular/material/core';
 import {MatButtonModule} from '@angular/material/button';
 import { SalesReportPeritemComponent } from './sales-report-peritem/sales-report-peritem.component';
 import { SalesHistoryComponent } from './sales-history/sales-history.component';
+import {MatTableModule} from '@angular/material/table';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { SalesHistoryComponent } from './sales-history/sales-history.component';
     MatFormFieldModule,
     MatDatepickerModule,
     ReactiveFormsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTableModule
   ],
   providers: [
     DatePipe,
