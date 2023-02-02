@@ -33,7 +33,10 @@
           </div>
         <mat-divider class="divider"></mat-divider>
       </div>
-      <button mat-raised-button class="button-want" (click)="pay()">Bayar</button>
+      <button mat-raised-button class="button-want" (click)="pay()" *ngIf="!isLoading">Bayar</button>
+      <button mat-raised-button class="button-want loading-button-wrapper" (click)="pay()" *ngIf="isLoading">
+        <mat-spinner [diameter]="26" class="transfer-spinner-white"></mat-spinner>
+      </button>
     </div>
   </div>
 </div>

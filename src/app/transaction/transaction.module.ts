@@ -11,6 +11,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import {MatButtonModule} from '@angular/material/button';
     ReactiveFormsModule,
     MatGridListModule,
     MatDividerModule,
-    MatButtonModule
+    MatButtonModule,
+    MatProgressSpinnerModule
   ]
 })
 export class TransactionModule {

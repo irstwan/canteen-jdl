@@ -84,3 +84,8 @@
   display: flex;
   align-self: center;
 }
+
+.loading-button-wrapper {
+  padding-left: 46%;
+  padding-top: 4px;
+}

@@ -20,6 +20,7 @@ export class SellComponent implements OnInit {
   cartItems: CartItem[] = [];
   @Output() keywordEmitter = new EventEmitter<string>();
   isResetCart = false;
+  isLoading = false;
   constructor(
     private mandatoryUtilsService: MandatoryUtilsService,
     private firestore: AngularFirestore,) {
@@ -82,6 +83,7 @@ export class SellComponent implements OnInit {
   }
 
   pay(): void {
+    this.isLoading = true;
     let subtotal = 0;
     let capitalPrice = 0;
     this.cartItems.forEach((item) => {
@@ -109,8 +111,10 @@ export class SellComponent implements OnInit {
         this.cartItems = [];
         this.isResetCart = true;
         this.cupertinoPane.hide();
+        this.isLoading = false;
       })
       .catch(e => {
+        this.isLoading = false;
         // console.log(e);
       })
   }
