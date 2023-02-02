@@ -14,10 +14,10 @@
     </mat-form-field>
   </div>
   <div class="item-container">
-    <app-item [searchByKeyword]="keyword.value"
+    <app-card-item [searchByKeyword]="keyword.value"
               [reset]="isResetCart"
               (cartItemsEmitter)="setCartItems($event)">
-    </app-item>
+    </app-card-item>
   </div>
   <div class="cupertino-pane">
     <h1 class="total">Total: {{getTotalTransaction()}}</h1>

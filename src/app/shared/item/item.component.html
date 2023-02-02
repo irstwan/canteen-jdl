@@ -1,30 +1,23 @@
-<div *ngFor="let product of itemsFiltered">
-  <mat-card class="custom-card">
-    <mat-card-content>
-      <div class="grid-container">
-        <div class="image">
-          <img src="{{product.urlImage}}" class="card-image">
-        </div>
-        <div class="description">
-          <p class="title">{{product.name}}</p>
-          <p class="stock-available">Stock Tersedia: {{product.stock}}</p>
-          <p class="stock-price">{{getRupiahFormatter(product.sell_price)}}</p>
-        </div>
-        <div class="remove-action" *ngIf="product.quantity > 0">
-          <button mat-icon-button aria-label="remove" class="icon-remove" (click)="removeItemFromCart(product)">
-            <mat-icon>remove_shopping_cart</mat-icon>
-          </button>
-        </div>
-        {{getIsFieldFocus()}}
-        <div class="add-item">
-          <button mat-raised-button class="button-want" *ngIf="!product.quantity" (click)="incrementQuantity(product, $event)">Mau</button>
-          <mat-form-field class="custom-form-field" appearance="outline" *ngIf="product.quantity > 0">
-            <mat-icon matPrefix class="decrement-icon" (click)="decrementQuantity(product, $event)">remove</mat-icon>
-            <input matInput #inputRef appFocus (isFocusChange)="onFocusChange($event)"  type="text" pattern="\d*" maxlength="2" [(ngModel)]="product.quantity" value="{{product.quantity}}" (input)="setInput()">
-            <mat-icon matSuffix class="increment-icon" (click)="incrementQuantity(product, $event)">add</mat-icon>
-          </mat-form-field>
-        </div>
-      </div>
-    </mat-card-content>
-  </mat-card>
+<div class="grid-container" *ngIf="item">
+  <div class="image">
+    <img src="{{item.urlImage}}" class="card-image">
+  </div>
+  <div class="description">
+    <p class="title">{{item.name}}</p>
+    <p class="stock-available">Stock Tersedia: {{item.stock}}</p>
+    <p class="stock-price">{{getRupiahFormatter(item.sell_price)}}</p>
+  </div>
+  <div class="remove-action" *ngIf="item.quantity > 0 && !isFocus">
+    <button mat-icon-button aria-label="remove" class="icon-remove" (click)="removeItemFromCart(item)">
+      <mat-icon>remove_shopping_cart</mat-icon>
+    </button>
+  </div>
+  <div class="add-item">
+    <button mat-raised-button class="button-want" *ngIf="item.quantity < 1 && !isFocus" (click)="incrementQuantity(item, $event)">Mau</button>
+    <mat-form-field class="custom-form-field" appearance="outline" *ngIf="item.quantity > 0 || isFocus">
+      <mat-icon matPrefix class="decrement-icon" (click)="decrementQuantity(item, $event)">remove</mat-icon>
+      <input matInput appFocus (isFocusChange)="onFocusChange($event)"  type="text" pattern="\d*" maxlength="2" [(ngModel)]="item.quantity" value="{{item.quantity}}" (input)="setInput()">
+      <mat-icon matSuffix class="increment-icon" (click)="incrementQuantity(item, $event)">add</mat-icon>
+    </mat-form-field>
+  </div>
 </div>

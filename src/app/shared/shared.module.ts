@@ -11,6 +11,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {ScanPageComponent} from './scan-page/scan-page.component';
 import {BarcodeScannerLivestreamModule, BarcodeScannerLivestreamOverlayModule} from 'ngx-barcode-scanner';
 import { FocusDirective } from './focus.directive';
+import { CardItemComponent } from './card-item/card-item.component';
 
 
 
@@ -18,12 +19,14 @@ import { FocusDirective } from './focus.directive';
   declarations: [
     ItemComponent,
     ScanPageComponent,
-    FocusDirective
+    FocusDirective,
+    CardItemComponent
   ],
-  exports: [
-    ItemComponent,
-    ScanPageComponent
-  ],
+    exports: [
+        ItemComponent,
+        ScanPageComponent,
+        CardItemComponent
+    ],
     imports: [
         CommonModule,
         MatToolbarModule,
