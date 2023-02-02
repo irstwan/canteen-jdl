@@ -7,6 +7,7 @@ import {AngularFirestore} from '@angular/fire/compat/firestore';
 import {CollectionAddress} from '../../model/CollectionAddress';
 import {SellTransaction} from '../../model/SellTransaction';
 import {serverTimestamp, increment} from '@angular/fire/firestore';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-sell',
@@ -112,10 +113,21 @@ export class SellComponent implements OnInit {
         this.isResetCart = true;
         this.cupertinoPane.hide();
         this.isLoading = false;
+        this.showSuccessDialog();
       })
       .catch(e => {
         this.isLoading = false;
         // console.log(e);
       })
+  }
+
+  showSuccessDialog(): void {
+    Swal.fire({
+      icon: 'success',
+      text: 'Silahkan Scan',
+      imageUrl: 'https://unsplash.it/400/200',
+      imageWidth: 400,
+      imageHeight: 200
+    })
   }
 }
