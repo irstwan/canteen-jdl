@@ -73,7 +73,7 @@ export class SellComponent implements OnInit {
   getTotalTransaction(): string {
     let total = 0;
     this.cartItems.forEach((item) => {
-      const subtotal = item.buy_price * item.quantity;
+      const subtotal = item.sell_price * item.quantity;
       total = total + subtotal;
     })
     return this.mandatoryUtilsService.getRupiahFormatter(total);
