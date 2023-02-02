@@ -127,7 +127,9 @@ export class SellComponent implements OnInit {
       text: 'Silahkan Scan',
       imageUrl: 'https://unsplash.it/400/200',
       imageWidth: 400,
-      imageHeight: 200
+      imageHeight: 200,
+      showCancelButton: false,
+      showConfirmButton: false
     })
   }
 }
