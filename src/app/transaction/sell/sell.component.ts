@@ -125,9 +125,9 @@ export class SellComponent implements OnInit {
     Swal.fire({
       icon: 'success',
       text: 'Silahkan Scan',
-      imageUrl: 'https://unsplash.it/400/200',
-      imageWidth: 400,
-      imageHeight: 200,
+      imageUrl: 'assets/qris_jdl.png',
+      imageWidth: 300,
+      imageHeight: 410,
       showCancelButton: false,
       showConfirmButton: false
     })
