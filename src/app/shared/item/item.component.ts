@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/compat/firestore';
 import {CollectionAddress} from '../../model/CollectionAddress';
 import {CartItem} from '../../model/CartItem';
@@ -11,6 +11,8 @@ import {collection, getFirestore, onSnapshot, query, where} from '@angular/fire/
   styleUrls: ['./item.component.css']
 })
 export class ItemComponent {
+  @ViewChild('inputRef') inputRef!: ElementRef;
+  isFocus = false;
   readonly db = getFirestore();
   items: CartItem[] = [];
   itemsFiltered: CartItem[] = [];
@@ -103,5 +105,14 @@ export class ItemComponent {
 
   getRupiahFormatter(nominal: number): string {
     return this.mandatoryUtils.getRupiahFormatter(nominal);
+  }
+
+  onFocusChange(value: boolean) {
+    this.isFocus = value;
+    console.log(this.inputRef?.nativeElement)
+  }
+
+  getIsFieldFocus(): boolean {
+    return this.inputRef?.nativeElement?.isFocus;
   }
 }

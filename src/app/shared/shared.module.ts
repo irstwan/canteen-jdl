@@ -10,13 +10,15 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {ScanPageComponent} from './scan-page/scan-page.component';
 import {BarcodeScannerLivestreamModule, BarcodeScannerLivestreamOverlayModule} from 'ngx-barcode-scanner';
+import { FocusDirective } from './focus.directive';
 
 
 
 @NgModule({
   declarations: [
     ItemComponent,
-    ScanPageComponent
+    ScanPageComponent,
+    FocusDirective
   ],
   exports: [
     ItemComponent,
