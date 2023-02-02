@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {CupertinoPane} from 'cupertino-pane';
 import {FormControl} from '@angular/forms';
 import {CartItem} from '../../model/CartItem';
@@ -7,7 +7,8 @@ import {AngularFirestore} from '@angular/fire/compat/firestore';
 import {CollectionAddress} from '../../model/CollectionAddress';
 import {SellTransaction} from '../../model/SellTransaction';
 import {serverTimestamp, increment} from '@angular/fire/firestore';
-import Swal from 'sweetalert2'
+import {MatDialog} from '@angular/material/dialog';
+import {SuccessDialogComponent} from '../success-dialog/success-dialog.component';
 
 @Component({
   selector: 'app-sell',
@@ -22,9 +23,13 @@ export class SellComponent implements OnInit {
   @Output() keywordEmitter = new EventEmitter<string>();
   isResetCart = false;
   isLoading = false;
+  total = 0;
+  @ViewChild('myAlert',{static: false})
+  myAlert: ElementRef | undefined;
   constructor(
     private mandatoryUtilsService: MandatoryUtilsService,
-    private firestore: AngularFirestore,) {
+    private firestore: AngularFirestore,
+    public dialog: MatDialog) {
     this.keyword = new FormControl();
   }
 
@@ -113,7 +118,7 @@ export class SellComponent implements OnInit {
         this.isResetCart = true;
         this.cupertinoPane.hide();
         this.isLoading = false;
-        this.showSuccessDialog();
+        this.showQris(subtotal);
       })
       .catch(e => {
         this.isLoading = false;
@@ -121,15 +126,13 @@ export class SellComponent implements OnInit {
       })
   }
 
-  showSuccessDialog(): void {
-    Swal.fire({
-      icon: 'success',
-      text: 'Silahkan Scan',
-      imageUrl: 'assets/qris_jdl.png',
-      imageWidth: 300,
-      imageHeight: 410,
-      showCancelButton: false,
-      showConfirmButton: false
-    })
+  showQris(nominal: number): void {
+    this.dialog.open(SuccessDialogComponent, {
+      data: {
+        nominal: nominal
+      },
+      height: '56vh',
+      width: '80vw',
+    });
   }
 }

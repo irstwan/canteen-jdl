@@ -12,11 +12,15 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {QRCodeModule} from 'angularx-qrcode';
+import { SuccessDialogComponent } from './success-dialog/success-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
   declarations: [
-    SellComponent
+    SellComponent,
+    SuccessDialogComponent
   ],
   exports: [
     SellComponent
@@ -33,7 +37,9 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatGridListModule,
     MatDividerModule,
     MatButtonModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    QRCodeModule,
+    MatDialogModule
   ]
 })
 export class TransactionModule {
