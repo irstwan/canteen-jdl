@@ -1,10 +1,14 @@
+<h3 mat-dialog-title class="dialog-title">{{data.isBCA ? 'Bayar dengan Akun BCA' : 'Bayar dengan selain BCA'}}</h3>
 <mat-dialog-content class="dialog-container">
   <p class="content-center">Total Bayar:</p>
   <p class="content-center nominal">{{getNominalFormatter(data.nominal)}}</p>
-  <qrcode [qrdata]="getQrisCode()" [width]="256" [errorCorrectionLevel]="'M'" class="content-center"></qrcode>
-  <div style="width: 100%" class="content-center">
-    <img src="assets/icon_qris.png" class="icon-qris" alt="icon-qris">
+  <div *ngIf="!data.isBCA">
+    <qrcode [qrdata]="getQrisCode()" [width]="256" [errorCorrectionLevel]="'M'" class="content-center"></qrcode>
+    <div style="width: 100%" class="content-center">
+      <img src="assets/icon_qris.png" class="icon-qris" alt="icon-qris">
+    </div>
   </div>
+  <img src="assets/qris_jdl_crop.png" *ngIf="data.isBCA" class="qris-jdl" alt="qris-jdl">
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button mat-dialog-close class="close-btn" mat-raised-button>Aku sudah bayar</button>

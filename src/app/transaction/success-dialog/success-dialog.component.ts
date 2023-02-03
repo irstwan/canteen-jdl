@@ -10,7 +10,7 @@ import {MandatoryUtilsService} from '../../utils/mandatory-utils.service';
 })
 export class SuccessDialogComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: {nominal: number},
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {nominal: number; isBCA: boolean},
               private qrisGenerator: QrisDynamicGeneratorService,
               private mandatoryUtils: MandatoryUtilsService) { }
 

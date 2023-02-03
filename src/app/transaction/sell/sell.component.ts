@@ -9,6 +9,7 @@ import {SellTransaction} from '../../model/SellTransaction';
 import {serverTimestamp, increment} from '@angular/fire/firestore';
 import {MatDialog} from '@angular/material/dialog';
 import {SuccessDialogComponent} from '../success-dialog/success-dialog.component';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-sell',
@@ -104,6 +105,7 @@ export class SellComponent implements OnInit {
       datetime: serverTimestamp(),
       items: this.cartItems
     }
+    this.total = subtotal;
     this.firestore.collection(CollectionAddress.SELL_TRANSACTION)
       .add(sellTransactionReq)
       .then(res => {
@@ -114,11 +116,10 @@ export class SellComponent implements OnInit {
           this.firestore.collection(CollectionAddress.ITEM).doc(item.itemId)
             .update({stock: increment(-item.quantity)})
         });
-        this.cartItems = [];
-        this.isResetCart = true;
         this.cupertinoPane.hide();
         this.isLoading = false;
-        this.showQris(subtotal);
+        // this.showQris(subtotal);
+        this.showConfirmation();
       })
       .catch(e => {
         this.isLoading = false;
@@ -126,14 +127,45 @@ export class SellComponent implements OnInit {
       })
   }
 
-  showQris(nominal: number): void {
-    this.dialog.open(SuccessDialogComponent, {
+  showQris(nominal: number, isBCA: boolean): void {
+    let dialogRef = this.dialog.open(SuccessDialogComponent, {
       data: {
-        nominal: nominal
+        nominal: nominal,
+        isBCA: isBCA
       },
       height: 'auto',
       width: '500px',
       disableClose: true
     });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.resetCart();
+    });
+  }
+
+  showConfirmation(): void {
+    Swal.fire({
+      title: 'Mau bayar dengan akun BCA ?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#0066AE',
+      cancelButtonColor: '#008a3a',
+      cancelButtonText: 'Bukan',
+      confirmButtonText: 'Ya, BCA',
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.showQris(this.total, true);
+      } else {
+        this.showQris(this.total, false);
+      }
+    })
+  }
+
+  resetCart(): void {
+    this.cartItems = [];
+    this.isResetCart = true;
   }
 }
