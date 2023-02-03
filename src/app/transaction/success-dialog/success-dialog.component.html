@@ -2,5 +2,7 @@
   <p class="content-center">Total Bayar:</p>
   <p class="content-center nominal">{{getNominalFormatter(data.nominal)}}</p>
   <qrcode [qrdata]="getQrisCode()" [width]="256" [errorCorrectionLevel]="'M'" class="content-center"></qrcode>
-  <img src="assets/icon_qris.png" class="icon-qris content-center" alt="icon-qris">
+  <div style="width: 100%" class="content-center">
+    <img src="assets/icon_qris.png" class="icon-qris" alt="icon-qris">
+  </div>
 </mat-dialog-content>

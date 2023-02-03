@@ -131,8 +131,8 @@ export class SellComponent implements OnInit {
       data: {
         nominal: nominal
       },
-      height: '56vh',
-      width: '80vw',
+      height: 'auto',
+      width: '500px',
     });
   }
 }
