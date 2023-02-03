@@ -14,3 +14,10 @@
   color: rgb(0, 112, 173);
   font-weight: bolder;
 }
+
+.close-btn {
+  width: 100%;
+  background: rgb(52, 98, 72);
+  color: #ffffff;
+  font-size: 16px;
+}

@@ -133,6 +133,7 @@ export class SellComponent implements OnInit {
       },
       height: 'auto',
       width: '500px',
+      disableClose: true
     });
   }
 }
