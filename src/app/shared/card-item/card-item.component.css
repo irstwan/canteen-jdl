@@ -128,3 +128,19 @@
   display: flex;
   align-self: center;
 }
+
+.custom-card {
+  width: 32.5%;
+  margin-right: 16px;
+  display: inline-block;
+}
+
+.custom-card:last-child {
+  margin-right: 0;
+}
+
+@media (max-width: 767px) {
+  .custom-card {
+    width: 100%;
+  }
+}

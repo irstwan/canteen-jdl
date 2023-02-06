@@ -1,32 +1,7 @@
-<div *ngFor="let product of itemsFiltered">
-  <mat-card class="custom-card">
-    <mat-card-content>
-      <app-item [item]="product"
-      (cartItemsEmitter)="setEmit()">
-      </app-item>
-<!--      <div class="grid-container">-->
-<!--        <div class="image">-->
-<!--          <img src="{{product.urlImage}}" class="card-image">-->
-<!--        </div>-->
-<!--        <div class="description">-->
-<!--          <p class="title">{{product.name}}</p>-->
-<!--          <p class="stock-available">Stock Tersedia: {{product.stock}}</p>-->
-<!--          <p class="stock-price">{{getRupiahFormatter(product.sell_price)}}</p>-->
-<!--        </div>-->
-<!--        <div class="remove-action" *ngIf="product.quantity > 0">-->
-<!--          <button mat-icon-button aria-label="remove" class="icon-remove" (click)="removeItemFromCart(product)">-->
-<!--            <mat-icon>remove_shopping_cart</mat-icon>-->
-<!--          </button>-->
-<!--        </div>-->
-<!--        <div class="add-item">-->
-<!--          <button mat-raised-button class="button-want" *ngIf="!product.quantity" (click)="incrementQuantity(product, $event)">Mau</button>-->
-<!--          <mat-form-field class="custom-form-field" appearance="outline" *ngIf="product.quantity > 0">-->
-<!--            <mat-icon matPrefix class="decrement-icon" (click)="decrementQuantity(product, $event)">remove</mat-icon>-->
-<!--            <input matInput #inputRef appFocus (isFocusChange)="onFocusChange($event, product)"  type="text" pattern="\d*" maxlength="2" [(ngModel)]="product.quantity" value="{{product.quantity}}" (input)="setInput()">-->
-<!--            <mat-icon matSuffix class="increment-icon" (click)="incrementQuantity(product, $event)">add</mat-icon>-->
-<!--          </mat-form-field>-->
-<!--        </div>-->
-<!--      </div>-->
-    </mat-card-content>
-  </mat-card>
-</div>
+<mat-card class="custom-card" *ngFor="let product of itemsFiltered">
+  <mat-card-content>
+    <app-item [item]="product"
+              (cartItemsEmitter)="setEmit()">
+    </app-item>
+  </mat-card-content>
+</mat-card>
