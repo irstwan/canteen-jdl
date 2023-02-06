@@ -56,7 +56,7 @@ export class SellComponent implements OnInit {
   setCartItems(cartItems: CartItem[]): void {
     this.isResetCart = false;
     this.cartItems = cartItems;
-    if (cartItems.length) {
+    if (cartItems.length && !this.cupertinoPane.isPanePresented()) {
       this.cupertinoPane.present({
         animate: true,
         transition: {
