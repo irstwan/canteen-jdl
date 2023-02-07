@@ -1,6 +1,7 @@
 <div class="grid-container" *ngIf="item">
   <div class="image">
-    <img src="{{item.urlImage}}" class="card-image">
+    <img src="{{item.urlImage}}" class="card-image" alt="image" *ngIf="item.urlImage?.length">
+    <img src="assets/no_image.png" class="card-image" alt="no image" *ngIf="!item.urlImage?.length">
   </div>
   <div class="description">
     <p class="title">{{item.name}}</p>
