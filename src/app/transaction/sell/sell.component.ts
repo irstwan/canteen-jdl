@@ -71,7 +71,7 @@ export class SellComponent implements OnInit {
         }
       });
     } else if (!this.cartItems.length){
-      this.cupertinoPane.destroy({animate: true});
+      this.destroyCupertinoPane();
     }
   }
 
@@ -115,14 +115,12 @@ export class SellComponent implements OnInit {
           this.firestore.collection(CollectionAddress.ITEM).doc(item.itemId)
             .update({stock: increment(-item.quantity)})
         });
-        this.cupertinoPane.hide();
+        this.destroyCupertinoPane();
         this.isLoading = false;
-        // this.showQris(subtotal);
         this.showConfirmation();
       })
       .catch(e => {
         this.isLoading = false;
-        // console.log(e);
       })
   }
 
@@ -149,7 +147,7 @@ export class SellComponent implements OnInit {
       showCancelButton: true,
       confirmButtonColor: '#0066AE',
       cancelButtonColor: '#008a3a',
-      cancelButtonText: 'Bukan',
+      cancelButtonText: 'Tidak',
       confirmButtonText: 'Ya, BCA',
       allowOutsideClick: false,
       allowEscapeKey: false,
@@ -166,5 +164,9 @@ export class SellComponent implements OnInit {
   resetCart(): void {
     this.cartItems = [];
     this.isResetCart = true;
+  }
+
+  destroyCupertinoPane(): void {
+    this.cupertinoPane.destroy({animate: true});
   }
 }

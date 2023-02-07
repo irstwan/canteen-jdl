@@ -74,18 +74,16 @@
 }
 
 .button-want {
-  align-content: center;
   border-radius: 0.3rem;
   color: #002e61;
   font-weight: bolder;
   height: 40px !important;
   width: 100%;
-  float: right;
   display: flex;
-  align-self: center;
+  justify-content: center;
+  align-items: center;
 }
 
-.loading-button-wrapper {
-  padding-left: 46%;
-  padding-top: 4px;
+.spinner {
+  margin: auto;
 }
