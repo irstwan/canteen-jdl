@@ -1,6 +1,7 @@
 {
   "projects": {
-    "default": "canteen-jdl"
+    "default": "canteen-jdl",
+    "prod": "canteen-jdl"
   },
   "targets": {
     "dev": {
