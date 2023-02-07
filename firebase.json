@@ -1,6 +1,7 @@
 {
   "hosting": [
     {
+      "target": "prod",
       "site": "jajanku",
       "public": "dist/canteen-jdl",
       "ignore": [
@@ -16,6 +17,7 @@
       ]
     },
     {
+      "target": "dev",
       "site": "jajanku-dev",
       "public": "dist/canteen-jdl",
       "ignore": [
