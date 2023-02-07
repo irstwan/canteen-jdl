@@ -131,7 +131,7 @@
 
 .custom-card {
   width: 32.5%;
-  margin-right: 16px;
+  margin-right: 1.25%;
   display: inline-block;
 }
 
@@ -142,5 +142,12 @@
 @media (max-width: 767px) {
   .custom-card {
     width: 100%;
+    margin-right: 0;
   }
+}
+
+.content-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
