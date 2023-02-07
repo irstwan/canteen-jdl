@@ -6,7 +6,7 @@
   "targets": {
     "canteen-jdl-dev": {
       "hosting": {
-        "prod": [
+        "jajanku": [
           "canteen-jdl"
         ]
       }
