@@ -70,9 +70,8 @@ export class SellComponent implements OnInit {
           }
         }
       });
-    }
-    else {
-      this.cupertinoPane.hide();
+    } else if (!this.cartItems.length){
+      this.cupertinoPane.destroy({animate: true});
     }
   }
 
