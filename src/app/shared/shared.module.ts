@@ -12,6 +12,7 @@ import {ScanPageComponent} from './scan-page/scan-page.component';
 import {BarcodeScannerLivestreamModule, BarcodeScannerLivestreamOverlayModule} from 'ngx-barcode-scanner';
 import { FocusDirective } from './focus.directive';
 import { CardItemComponent } from './card-item/card-item.component';
+import { LoaderComponent } from './loader/loader.component';
 
 
 
@@ -20,7 +21,8 @@ import { CardItemComponent } from './card-item/card-item.component';
     ItemComponent,
     ScanPageComponent,
     FocusDirective,
-    CardItemComponent
+    CardItemComponent,
+    LoaderComponent
   ],
     exports: [
         ItemComponent,

@@ -2,7 +2,6 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {collection, getFirestore, onSnapshot, query, where} from '@angular/fire/firestore';
 import {CartItem} from '../../model/CartItem';
 import {AngularFirestore} from '@angular/fire/compat/firestore';
-import {MandatoryUtilsService} from '../../utils/mandatory-utils.service';
 import {CollectionAddress} from '../../model/CollectionAddress';
 
 @Component({
@@ -14,6 +13,7 @@ export class CardItemComponent {
   readonly db = getFirestore();
   items: CartItem[] = [];
   itemsFiltered: CartItem[] = [];
+  isLoading = false;
   @Input() set searchByKeyword(keyword: string) {
     this.itemsFiltered = this.items.filter(product => {
       let productData = product?.barcode + ' ' +
@@ -40,6 +40,7 @@ export class CardItemComponent {
   }
 
   private getItems() {
+    this.isLoading = true;
     onSnapshot(
       query(collection(this.db, CollectionAddress.ITEM), where('stock', '>', 0)),
       (snapshot) => {
@@ -65,6 +66,7 @@ export class CardItemComponent {
               this.itemsFiltered.splice(indexFilter, 1);
             }
           }
+          this.isLoading = false;
         });
       },
       (error) => {
