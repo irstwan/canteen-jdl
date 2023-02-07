@@ -1,10 +1,9 @@
 {
   "projects": {
-    "default": "canteen-jdl",
-    "dev": "canteen-jdl-dev"
+    "default": "canteen-jdl"
   },
   "targets": {
-    "canteen-jdl-dev": {
+    "dev": {
       "hosting": {
         "jajanku": [
           "canteen-jdl"

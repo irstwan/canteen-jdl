@@ -1,7 +1,7 @@
 {
   "hosting": [
     {
-      "target": "jajanku",
+      "site": "jajanku",
       "public": "dist/canteen-jdl",
       "ignore": [
         "firebase.json",
@@ -16,7 +16,7 @@
       ]
     },
     {
-      "target": "jajanku-dev",
+      "site": "jajanku-dev",
       "public": "dist/canteen-jdl",
       "ignore": [
         "firebase.json",
