@@ -3,6 +3,14 @@
     "default": "canteen-jdl",
     "dev": "canteen-jdl-dev"
   },
-  "targets": {},
+  "targets": {
+    "canteen-jdl-dev": {
+      "hosting": {
+        "prod": [
+          "canteen-jdl"
+        ]
+      }
+    }
+  },
   "etags": {}
 }
