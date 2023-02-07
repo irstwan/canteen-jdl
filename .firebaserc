@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "canteen-jdl"
-  }
+    "default": "canteen-jdl",
+    "dev": "canteen-jdl-dev"
+  },
+  "targets": {},
+  "etags": {}
 }
