@@ -1,16 +1,5 @@
 {
   "projects": {
-    "default": "canteen-jdl",
-    "prod": "canteen-jdl"
-  },
-  "targets": {
-    "dev": {
-      "hosting": {
-        "jajanku": [
-          "canteen-jdl"
-        ]
-      }
-    }
-  },
-  "etags": {}
+    "default": "canteen-jdl"
+  }
 }
