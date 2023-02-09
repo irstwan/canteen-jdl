@@ -16,8 +16,9 @@
   grid-area: image;
   width: 80px;
   height: 80px;
-  margin: auto auto auto 0;
+  margin: auto 4px auto 0;
 }
+
 .description { grid-area: description; }
 .remove-action {
   grid-area: remove-action;

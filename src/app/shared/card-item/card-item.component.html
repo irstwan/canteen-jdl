@@ -1,10 +1,12 @@
 <app-loader *ngIf="isLoading"></app-loader>
 <ng-container *ngIf="!isLoading">
-  <mat-card class="custom-card" *ngFor="let product of itemsFiltered">
-    <mat-card-content>
-      <app-item [item]="product"
-                (cartItemsEmitter)="setEmit()">
-      </app-item>
-    </mat-card-content>
-  </mat-card>
+  <div class="card-container">
+    <mat-card class="custom-card" *ngFor="let product of itemsFiltered">
+      <mat-card-content>
+        <app-item [item]="product"
+                  (cartItemsEmitter)="setEmit()">
+        </app-item>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </ng-container>
