@@ -8,5 +8,8 @@
         </app-item>
       </mat-card-content>
     </mat-card>
+    <div class="not-available" *ngIf="!itemsFiltered.length">
+      <p>Jajanan tidak ditemukan!</p>
+    </div>
   </div>
 </ng-container>
