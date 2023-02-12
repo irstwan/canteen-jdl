@@ -2,6 +2,15 @@
   padding: 12px;
 }
 
+.title-jajanku {
+  font-weight: 700;
+  color: #002e61;
+  font-size: 32px;
+  width: 100%;
+  margin: 24px 0 32px 0;
+  text-align: center;
+}
+
 .custom-form-field-keyword {
   width: 100%;
 }
@@ -86,4 +95,10 @@
 
 .spinner {
   margin: auto;
+}
+
+@media (min-width: 767px) {
+  .slide-toggle-scanner {
+    display: none;
+  }
 }
