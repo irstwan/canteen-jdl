@@ -1,6 +1,5 @@
-import {Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, HostListener, OnInit, Output, ViewChild} from '@angular/core';
 import {CupertinoPane} from 'cupertino-pane';
-import {FormControl} from '@angular/forms';
 import {CartItem} from '../../model/CartItem';
 import {MandatoryUtilsService} from '../../utils/mandatory-utils.service';
 import {AngularFirestore} from '@angular/fire/compat/firestore';
@@ -19,7 +18,7 @@ import Swal from 'sweetalert2'
 export class SellComponent implements OnInit {
   isScanMode = false;
   cupertinoPane: any;
-  keyword: FormControl;
+  inputKeyword = '';
   cartItems: CartItem[] = [];
   @Output() keywordEmitter = new EventEmitter<string>();
   isResetCart = false;
@@ -27,30 +26,28 @@ export class SellComponent implements OnInit {
   total = 0;
   @ViewChild('myAlert',{static: false})
   myAlert: ElementRef | undefined;
+
+  @ViewChild('inputField') inputField: any;
   constructor(
     private mandatoryUtilsService: MandatoryUtilsService,
     private firestore: AngularFirestore,
     public dialog: MatDialog) {
-    this.keyword = new FormControl();
   }
 
   ngOnInit(): void {
     this.cupertinoPane = new CupertinoPane('.cupertino-pane', {
       draggableOver: true
     });
-
-    this.keyword.valueChanges
-      .subscribe((value) => {
-        this.keywordEmitter.emit(value);
-      });
   }
 
   setKeyword(keyword: string) {
-    this.keyword.setValue(keyword);
+    this.inputKeyword = keyword;
+    this.inputField.nativeElement.value = this.inputKeyword
     this.isScanMode = !this.isScanMode;
   }
   clearSearch(): void {
-    this.keyword.setValue('');
+    this.inputKeyword = '';
+    this.inputField.nativeElement.value = this.inputKeyword
   }
 
   setCartItems(cartItems: CartItem[]): void {
@@ -168,5 +165,21 @@ export class SellComponent implements OnInit {
 
   destroyCupertinoPane(): void {
     this.cupertinoPane.destroy({animate: true});
+  }
+
+  @HostListener('document:keyup', ['$event'])
+  keyEventDelete(event: KeyboardEvent) {
+    if (event.key === 'Delete' || event.key === 'Backspace') {
+      this.inputKeyword = this.inputField.nativeElement.value;
+    } else if (event.key !== 'Enter') {
+      this.inputKeyword += event.key;
+      this.inputField.nativeElement.value = this.inputKeyword;
+    } else if (event.key === 'Enter') {
+      // Perlu di enhance
+    }
+  }
+  clearListener() {
+    this.inputKeyword = '';
+    this.inputField.nativeElement.value = '';
   }
 }
