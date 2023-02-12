@@ -182,4 +182,25 @@ export class SellComponent implements OnInit {
     this.inputKeyword = '';
     this.inputField.nativeElement.value = '';
   }
+
+  @HostListener('window:offline')
+  setNetworkOffline(): void {
+    this.offlineAlert();
+  }
+
+  @HostListener('window:online')
+  setNetworkOnline(): void {
+    Swal.close();
+  }
+
+  offlineAlert(): void {
+    Swal.fire({
+      title: 'Gagal koneksi internet',
+      icon: 'warning',
+      showConfirmButton: false,
+      showCancelButton: false,
+      allowOutsideClick: false,
+      allowEscapeKey: false
+    }).then(() => {});
+  }
 }
