@@ -9,6 +9,7 @@ import {serverTimestamp, increment} from '@angular/fire/firestore';
 import {MatDialog} from '@angular/material/dialog';
 import {SuccessDialogComponent} from '../success-dialog/success-dialog.component';
 import Swal from 'sweetalert2'
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-sell',
@@ -28,26 +29,31 @@ export class SellComponent implements OnInit {
   myAlert: ElementRef | undefined;
 
   @ViewChild('inputField') inputField: any;
+  keyword: FormControl;
   constructor(
     private mandatoryUtilsService: MandatoryUtilsService,
     private firestore: AngularFirestore,
     public dialog: MatDialog) {
+    this.keyword = new FormControl();
   }
 
   ngOnInit(): void {
     this.cupertinoPane = new CupertinoPane('.cupertino-pane', {
       draggableOver: true
     });
+
+    this.keyword.valueChanges
+      .subscribe((value) => {
+        this.keywordEmitter.emit(value);
+      });
   }
 
   setKeyword(keyword: string) {
-    this.inputKeyword = keyword;
-    this.inputField.nativeElement.value = this.inputKeyword
+    this.keyword.setValue(keyword);
     this.isScanMode = !this.isScanMode;
   }
   clearSearch(): void {
-    this.inputKeyword = '';
-    this.inputField.nativeElement.value = this.inputKeyword
+    this.keyword.setValue('');
   }
 
   setCartItems(cartItems: CartItem[]): void {
@@ -167,17 +173,17 @@ export class SellComponent implements OnInit {
     this.cupertinoPane.destroy({animate: true});
   }
 
-  @HostListener('document:keyup', ['$event'])
-  keyEventDelete(event: KeyboardEvent) {
-    if (event.key === 'Delete' || event.key === 'Backspace') {
-      this.inputKeyword = this.inputField.nativeElement.value;
-    } else if (event.key !== 'Enter') {
-      this.inputKeyword += event.key;
-      this.inputField.nativeElement.value = this.inputKeyword;
-    } else if (event.key === 'Enter') {
-      // Perlu di enhance
-    }
-  }
+  // @HostListener('document:keyup', ['$event'])
+  // keyEventDelete(event: KeyboardEvent) {
+  //   if (event.key === 'Delete' || event.key === 'Backspace') {
+  //     this.inputKeyword = this.inputField.nativeElement.value;
+  //   } else if (event.key !== 'Enter') {
+  //     this.inputKeyword += event.key;
+  //     this.inputField.nativeElement.value = this.inputKeyword;
+  //   } else if (event.key === 'Enter') {
+  //     // Perlu di enhance
+  //   }
+  // }
   clearListener() {
     this.inputKeyword = '';
     this.inputField.nativeElement.value = '';

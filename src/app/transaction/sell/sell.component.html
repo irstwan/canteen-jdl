@@ -10,30 +10,30 @@
   <app-scan-page *ngIf="isScanMode" (barcode)="setKeyword($event)"></app-scan-page>
   <div>
     <mat-form-field class="custom-form-field-keyword" appearance="outline">
-      <input #inputField type="text" matInput placeholder="Cari jajanan" (focus)="clearListener()">
-      <mat-icon matSuffix class="clear-keyword" *ngIf="inputKeyword?.length" (click)="clearSearch()">
+      <input type="text" matInput placeholder="Cari jajanan" [formControl]="keyword">
+      <mat-icon matSuffix class="clear-keyword" *ngIf="keyword.value?.length" (click)="clearSearch()">
         clear
       </mat-icon>
     </mat-form-field>
   </div>
   <div class="item-container">
-    <app-card-item [searchByKeyword]="inputKeyword"
-              [reset]="isResetCart"
-              (cartItemsEmitter)="setCartItems($event)">
+    <app-card-item [searchByKeyword]="keyword.value"
+                   [reset]="isResetCart"
+                   (cartItemsEmitter)="setCartItems($event)">
     </app-card-item>
   </div>
   <div class="cupertino-pane">
     <h1 class="total">Total: {{getTotalTransaction()}}</h1>
     <div class="content">
       <div *ngFor="let item of cartItems">
-          <div>
-            <p class="name">{{item.name}}</p>
-            <div class="detail-item-container">
-              <div class="price">{{getNominalFormatter(item.sell_price)}}</div>
-              <div class="quantity">x {{item.quantity}}</div>
-              <div class="subtotal">{{getNominalFormatter(item.sell_price * item.quantity)}}</div>
-            </div>
+        <div>
+          <p class="name">{{item.name}}</p>
+          <div class="detail-item-container">
+            <div class="price">{{getNominalFormatter(item.sell_price)}}</div>
+            <div class="quantity">x {{item.quantity}}</div>
+            <div class="subtotal">{{getNominalFormatter(item.sell_price * item.quantity)}}</div>
           </div>
+        </div>
         <mat-divider class="divider"></mat-divider>
       </div>
       <button mat-raised-button class="button-want" (click)="pay()" *ngIf="!isLoading">Bayar</button>
